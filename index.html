@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Future Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 🌌 Background Layers -->
+<div class="parallax">
+  <div class="layer back"></div>
+  <div class="layer mid"></div>
+  <div class="layer front"></div>
+</div>
+
+<!-- ☁️ Clouds -->
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
+<!-- 🌧️ Rain -->
+<div class="rain"></div>
+
+<!-- 🚀 Content -->
+<section class="hero">
+  <h1>Enter The System</h1>
+  <p>Scroll to move forward</p>
+</section>
+
+<section class="road-section">
+  <div class="road"></div>
+</section>
+
+<section class="courses">
+  <h2>Courses</h2>
+
+  <div class="card">
+    <h3>Psychology</h3>
+    <button onclick="buyCourse('Psychology')">Buy</button>
+  </div>
+
+  <div class="card">
+    <h3>Strategy</h3>
+    <button onclick="buyCourse('Strategy')">Buy</button>
+  </div>
+
+  <div class="card">
+    <h3>Risk</h3>
+    <button onclick="buyCourse('Risk')">Buy</button>
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+
+<script>
+/* 🌧️ Rain Generator */
+const rain = document.querySelector('.rain');
+for (let i = 0; i < 100; i++) {
+  let drop = document.createElement('div');
+  drop.classList.add('drop');
+  drop.style.left = Math.random() * 100 + "vw";
+  drop.style.animationDuration = (0.5 + Math.random()) + "s";
+  rain.appendChild(drop);
+}
+</script>
+
+</body>
+</html>

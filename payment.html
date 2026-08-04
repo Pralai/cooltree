@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="payment-page">
+  <div class="glass-box">
+    <h2 id="title">Complete Payment</h2>
+
+    <img src="qr.png">
+
+    <div class="upi">yourname@upi</div>
+
+    <p>Send screenshot after payment</p>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const course = params.get("course");
+
+if(course){
+ document.getElementById("title").innerText =
+ "Unlock " + course;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: black;
+  color: #d1fae5;
+  overflow-x: hidden;
+}
+
+/* 🌌 PARALLAX */
+.parallax .layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.back {
+  background: radial-gradient(circle at center, #022c22, black);
+  z-index: -3;
+}
+
+.mid {
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 40px,
+    rgba(34,197,94,0.05) 42px
+  );
+  z-index: -2;
+}
+
+.front {
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  z-index: -1;
+}
+
+/* ☁️ Clouds */
+.cloud {
+  position: fixed;
+  background: white;
+  opacity: 0.1;
+  border-radius: 50px;
+}
+
+.cloud1 {
+  width: 200px;
+  height: 60px;
+  top: 50px;
+  animation: cloudMove 40s linear infinite;
+}
+
+.cloud2 {
+  width: 300px;
+  height: 80px;
+  top: 120px;
+  animation: cloudMove 60s linear infinite;
+}
+
+@keyframes cloudMove {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(120vw); }
+}
+
+/* 🌧️ Rain */
+.rain {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.drop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(34,197,94,0.3);
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  to { transform: translateY(100vh); }
+}
+
+/* 🚀 Sections */
+section {
+  min-height: 100vh;
+  padding: 80px;
+}
+
+/* 🛣️ ROAD */
+.road {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(#111, #000);
+  position: relative;
+}
+
+.road::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: repeating-linear-gradient(
+    to right,
+    #22c55e 0px,
+    #22c55e 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  top: 50%;
+  animation: roadMove 1s linear infinite;
+}
+
+@keyframes roadMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-80px); }
+}
+
+/* 🧠 HERO */
+.hero {
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* 🟢 CARDS */
+.card {
+  background: rgba(34,197,94,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34,197,94,0.2);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(34,197,94,0.4);
+}
+
+/* BUTTON */
+button {
+  background: #22c55e;
+  border: none;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 💳 PAYMENT */
+.payment-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.glass-box {
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.3);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.glass-box img {
+  width: 200px;
+  margin: 20px;
+}
+
+.upi {
+  background: rgba(34,197,94,0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
