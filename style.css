@@ -6,6 +6,9 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 /* 🌌 PARALLAX */
 .parallax .layer {
