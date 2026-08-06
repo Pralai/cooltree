@@ -6,6 +6,7 @@ body {
   overflow-x: hidden;
 }
 
+
 /* 🌌 PARALLAX */
 .parallax .layer {
   position: fixed;
@@ -15,7 +16,7 @@ body {
 }
 
 .back {
-  background: radial-gradient(circle at center, #022c22, black);
+  background: radial-gradient(circle at center, #096d19, black);
   z-index: -3;
 }
 
@@ -63,9 +64,12 @@ body {
 /* 🌧️ Rain */
 .rain {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 2; /* above background */
 }
 
 .drop {
@@ -86,34 +90,6 @@ section {
   padding: 80px;
 }
 
-/* 🛣️ ROAD */
-.road {
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(#111, #000);
-  position: relative;
-}
-
-.road::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 10px;
-  background: repeating-linear-gradient(
-    to right,
-    #22c55e 0px,
-    #22c55e 40px,
-    transparent 40px,
-    transparent 80px
-  );
-  top: 50%;
-  animation: roadMove 1s linear infinite;
-}
-
-@keyframes roadMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(-80px); }
-}
 
 /* 🧠 HERO */
 .hero {
@@ -139,12 +115,16 @@ section {
 
 /* BUTTON */
 button {
-  background: #22c55e;
+  background: #3fc524;
   border: none;
   padding: 10px 20px;
   color: black;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.display-5 {
+  text-shadow: 0 0 8px #00740c;
 }
 
 /* 💳 PAYMENT */
@@ -157,7 +137,7 @@ button {
 
 .glass-box {
   background: rgba(34,197,94,0.08);
-  border: 1px solid rgba(34,197,94,0.3);
+  border: 1px solid rgba(48, 206, 34, 0.3);
   backdrop-filter: blur(15px);
   padding: 40px;
   border-radius: 20px;
@@ -170,7 +150,152 @@ button {
 }
 
 .upi {
-  background: rgba(34,197,94,0.2);
+  background: rgba(48, 197, 34, 0.2);
   padding: 10px;
   border-radius: 10px;
+}
+
+/* 🔥 CUSTOM BUTTON */
+.btn-success {
+  background: linear-gradient(45deg, #279411, #1a8f02);
+  border: none;
+  color: black;
+  transition: 0.3s;
+}
+
+.btn-success:hover {
+  background: linear-gradient(45deg, #970a0a00, #27940b00);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(35, 146, 7, 0.6);
+  color: rgb(0, 255, 0);
+}
+
+.icon-green {
+  color: #c52222;
+}
+
+.icon-glow {
+  color: #22c55e;
+  text-shadow: 0 0 10px rgba(34,197,94,0.8);
+}
+
+
+/* 🔴 FORCE ALL ICONS RED */
+i.bi {
+  color: #1a9e16 !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 💥 HOVER EFFECT */
+i.bi:hover {
+  transform: scale(1.25) rotate(6deg);
+  color: #06a6bb !important;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+}
+
+/* ⚡ CLICK EFFECT */
+i.bi:active {
+  transform: scale(0.9);
+  text-shadow: 0 0 25px rgba(255, 0, 0, 1);
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 5px rgba(255,0,0,0.4); }
+  50% { text-shadow: 0 0 20px rgba(238, 255, 0, 0.493); }
+  100% { text-shadow: 0 0 5px rgba(255,0,0,0.4); }
+}
+
+.icon {
+  animation: pulseGlow 2s infinite;
+}
+
+.course-description {
+  color: #35c711; /* red */
+}
+
+h1 {
+  color: #228d0d;
+  text-shadow: 0 0 15px rgba(7, 51, 2, 0.8);
+}
+
+h2 {
+  color: #2fa112;
+}
+
+h4 {
+  color: #2ea10b;
+}
+
+h5 {
+  color: black;
+}
+
+.lead {
+  color : #228d0d;
+}
+
+/* 🌿 TITLE SAME AS ICONS */
+.main-course {
+  color: #1a9e16; /* same green as icons */
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* base glow */
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.247);
+
+  /* same animation */
+  animation: pulseGlow 3s infinite;
+}
+
+/* 💥 HOVER (same behavior) */
+.main-course:hover {
+  transform: scale(1.1) rotate(2deg); /* slightly less rotate for class look */
+  color: #06a6bb;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.438);
+}
+
+/* ⚡ CLICK */
+.main-course:active {
+  transform: scale(0.95);
+  text-shadow: 0 0 25px rgba(255, 0, 0, 0.459);
+}
+
+
+.lightning-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.lightning-path {
+  stroke: #fdfdfd;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0;
+
+  filter: drop-shadow(0 0 8px #fff)
+          drop-shadow(0 0 15px #00ffcc)
+          drop-shadow(0 0 25px #00ffcc);
+}
+
+.lightning-path.active {
+  animation: lightningFlash 0.5s ease;
+}
+
+@keyframes lightningFlash {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('your-image.jpg') no-repeat center center/cover;
+  z-index: 1;
 }
