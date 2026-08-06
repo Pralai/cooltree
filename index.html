@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Future Dashboard</title>
+<title>Cool Tree Universe</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<!-- 🌌 Background Layers -->
+<body
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+>
+
+<!-- 🌌 PARALLAX -->
 <div class="parallax">
   <div class="layer back"></div>
   <div class="layer mid"></div>
@@ -21,42 +31,114 @@
 <!-- 🌧️ Rain -->
 <div class="rain"></div>
 
-<!-- 🚀 Content -->
-<section class="hero">
-  <h1>Enter The System</h1>
-  <p>Scroll to move forward</p>
+<!-- Lightning  -->
+<svg class="lightning-svg"></svg>
+
+<!-- 🚀 HERO -->
+<section class="hero text-center text-light d-flex align-items-center justify-content-center">
+  <div>
+    <h5 class="display-5 fw-bold">Welcome to</h5>
+    <h1 class="display-4 fw-bold main-course">Cool Tree Universe</h1>
+    <p class="lead">Psychology . Risk Management .  Strategy</p>
+    <button class="btn btn-success mt-3 px-4 py-2">Explore</button>
+  </div>
 </section>
 
-<section class="road-section">
-  <div class="road"></div>
+
+<!-- 🎯 COURSES -->
+<section class="container py-5">
+  <h2 class="text-center mb-5">Courses</h2>
+
+  <div class="row g-4">
+
+    <!-- 🧠 Psychology -->
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <i class="bi bi-emoji-neutral icon display-4 text-success mb-3"></i>
+        <h4>Psychology</h4>
+        <p class="course-description">Master your mind. Control your trades.</p>
+        <button class="btn btn-success mb-3"  onclick="window.location.href='psychology.html'">
+  Explore Course
+</button>
+        <button class="btn btn-success"  onclick="buyCourse('Psychology')">Buy</button>
+      </div>
+    </div>
+
+    <!-- 📊 Strategy -->
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <i class="bi bi-bar-chart-line icon display-4 text-success mb-3"></i>
+        <h4>Strategy</h4>
+        <p class="course-description">Precision entries. Smart money mindset.</p>
+        <button class="btn btn-success mb-3" onclick="window.location.href='strategy.html'">
+  Explore Course
+</button>
+        <button class="btn btn-success" onclick="buyCourse('Strategy')">Buy</button>
+      </div>
+    </div>
+
+    <!-- ⚠️ Risk -->
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <i class="bi bi-shield-plus icon display-4 text-success mb-3"></i>
+        <h4>Risk Management</h4>
+        <p class="course-description">Protect capital. Trade like a professional.</p>
+                <button class="btn btn-success mb-3" onclick="window.location.href='risk.html'">
+  Explore Course
+</button>
+        <button class="btn btn-success" onclick="buyCourse('Risk')">Buy</button>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section class="courses">
-  <h2>Courses</h2>
+<!-- ✨ BONUS SECTION (Trust Builder) -->
+<section class="container text-center py-5">
+  <h2>Why This System?</h2>
+  <div class="row mt-4">
 
-  <div class="card">
-    <h3>Psychology</h3>
-    <button onclick="buyCourse('Psychology')">Buy</button>
+    <div class="col-md-4">
+      <i class="bi bi-lightning-charge display-5 text-success"></i>
+      <p style="color: rgb(0, 255, 0); font-weight: bold;">Fast Execution Mindset</p>
+    </div>
+
+    <div class="col-md-4">
+      <i class="bi bi-graph-up-arrow display-5 text-success"></i>
+      <p style="color: rgb(0, 255, 0); font-weight: bold;">Real Trading Edge</p>
+    </div>
+
+    <div class="col-md-4">
+      <i class="bi bi-lock display-5 text-success"></i>
+      <p style="color: rgb(2, 255, 2); font-weight: bold;">Discipline System</p>
+    </div>
+
   </div>
-
-  <div class="card">
-    <h3>Strategy</h3>
-    <button onclick="buyCourse('Strategy')">Buy</button>
-  </div>
-
-  <div class="card">
-    <h3>Risk</h3>
-    <button onclick="buyCourse('Risk')">Buy</button>
-  </div>
-
 </section>
+
+<!-- 🌐 FOOTER -->
+<footer class="text-center py-4" style="background: rgba(0,0,0,0.8);">
+
+  <p class="mb-3" style="color: rgb(2, 255, 2); font-weight: bold;">Connect With Me</p>
+
+  <div class="d-flex justify-content-center gap-4 fs-3">
+
+    <a href="https://www.youtube.com" class="text-success"><i class="bi bi-youtube"></i></a>
+    <a href="https://www.x.com" class="text-success"><i class="bi bi-twitter-x"></i></a>
+    <a href="https://www.instagram.com" class="text-success"><i class="bi bi-instagram"></i></a>
+    <a href="#" class="text-success"><i class="bi bi-telegram"></i></a>
+
+  </div>
+
+
+</footer>
 
 <script src="script.js"></script>
 
 <script>
 /* 🌧️ Rain Generator */
 const rain = document.querySelector('.rain');
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 120; i++) {
   let drop = document.createElement('div');
   drop.classList.add('drop');
   drop.style.left = Math.random() * 100 + "vw";
