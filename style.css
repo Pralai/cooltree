@@ -1,3 +1,7 @@
+* {
+  font-family: "MV Boli", "Comic Sans MS", cursive !important;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -6,9 +10,6 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 /* 🌌 PARALLAX */
 .parallax .layer {
@@ -223,7 +224,38 @@ h1 {
 }
 
 h2 {
-  color: #2fa112;
+  font-size: 2.8rem;
+  color: #06a000;
+
+  text-shadow: 
+    0 0 5px rgba(24, 141, 0, 0.788),
+    0 0 10px rgba(53, 197, 34, 0.5),
+    0 0 20px rgba(53, 197, 34, 0.4);
+
+  animation: glowBreath 2.5s ease-in-out infinite;
+}
+
+@keyframes glowBreath {
+  0% {
+    text-shadow: 
+      0 0 5px rgba(53, 197, 34, 0.4),
+      0 0 10px rgba(34, 197, 42, 0.3),
+      0 0 15px rgba(34, 197, 48, 0.2);
+  }
+
+  50% {
+    text-shadow: 
+      0 0 10px rgba(53, 197, 34, 0.8),
+      0 0 20px rgba(40, 197, 34, 0.7),
+      0 0 35px rgba(40, 197, 34, 0.6);
+  }
+
+  100% {
+    text-shadow: 
+      0 0 5px rgba(40, 197, 34, 0.4),
+      0 0 10px rgba(61, 197, 34, 0.3),
+      0 0 15px rgba(34, 197, 34, 0.2);
+  }
 }
 
 h4 {
@@ -301,4 +333,132 @@ h5 {
   height: 100vh;
   background: url('your-image.jpg') no-repeat center center/cover;
   z-index: 1;
+}
+
+/* Psychology Page */
+
+
+/* 🧠 GLASS CONTENT BOX */
+.glass-content {
+  background: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(27, 124, 2, 0.719);
+  backdrop-filter: blur(18px);
+  padding: 50px;
+  border-radius: 18px;
+  max-width: 1500px;
+  margin: auto;
+
+  box-shadow: 
+    0 0 30px rgba(23, 92, 2, 0.952),
+    inset 0 0 15px rgba(51, 131, 80, 0.04);
+
+  position: relative;
+  z-index: 2;
+
+}
+
+
+/* 🏆 TITLE */
+.main-title {
+  font-size: 5rem;
+  color: #0375aa;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.658);
+}
+
+
+/* ✨ SUBTITLE */
+.subtitle {
+  color: #0375aa;
+  letter-spacing: 2px;
+  font-size: 2rem;
+}
+
+
+/* 📜 LIST STYLE */
+.content-list {
+  list-style:none;
+  padding: 0;
+}
+
+
+/* MAIN POINTS */
+.content-list > li {
+  margin-bottom: 18px;
+  padding-left: 22px;
+  position: relative;
+  color: rgba(21, 255, 0, 0.9);
+  font-size: 2rem;
+  line-height: 1.7;
+}
+
+
+/* 🔹 BULLET GLOW */
+.content-list > li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #00ff0d;
+  text-shadow: 0 0 6px rgba(0, 255, 34, 0.575);
+}
+
+
+/* SUB LIST */
+.content-list ul {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+
+/* SUB POINTS */
+.content-list ul li {
+  font-size: 1.6rem;
+  color: rgba(0, 247, 255, 0.705);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+
+/* ✨ HOVER EFFECT (SUBTLE & PREMIUM) */
+.content-list > li:hover {
+  color: #000000;
+  text-shadow: 0 0 6px rgb(4, 194, 252);
+  transition: color 0.3s ease;
+}
+
+/*Channel Logo*/
+
+.logo-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.logo-img {
+  width: 75px; /* adjust size here */
+  height: auto;
+  cursor: pointer;
+
+  /* subtle premium glow */
+  filter: drop-shadow(0 0 6px rgba(40, 197, 34, 0.4));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* hover effect */
+.logo-img:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 12px rgba(61, 197, 34, 0.7));
+}
+
+/* 🌳 FIXED TREE */
+.cool-tree {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  height: 75vh;      /* 1/3 of screen height */
+  width: auto;       /* keeps aspect ratio */
+
+  z-index: 0;        /* behind glass box */
+  pointer-events: none; /* so it doesn't block clicks */
 }
