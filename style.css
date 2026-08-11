@@ -42,7 +42,7 @@ body {
 .cloud {
   position: fixed;
   background: white;
-  opacity: 0.1;
+  opacity: 0.2;
   border-radius: 50px;
 }
 
@@ -73,14 +73,14 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2; /* above background */
+  z-index: 11; /* above background */
 }
 
 .drop {
   position: absolute;
   width: 2px;
   height: 20px;
-  background: rgba(34,197,94,0.3);
+  background: rgba(34, 197, 34, 0.3);
   animation: rainFall linear infinite;
 }
 
@@ -140,7 +140,7 @@ button {
 }
 
 .glass-box {
-  background: rgba(34,197,94,0.08);
+  background: rgba(0, 0, 0, 0.253);
   border: 1px solid rgba(48, 206, 34, 0.3);
   backdrop-filter: blur(15px);
   padding: 40px;
@@ -225,12 +225,12 @@ h1 {
 
 h2 {
   font-size: 2.8rem;
-  color: #06a000;
+  color: #00aaff;
 
   text-shadow: 
-    0 0 5px rgba(24, 141, 0, 0.788),
-    0 0 10px rgba(53, 197, 34, 0.5),
-    0 0 20px rgba(53, 197, 34, 0.4);
+    0 0 5px rgba(0, 170, 255, 0.8),
+    0 0 10px rgba(0, 170, 255, 0.5),
+    0 0 20px rgba(0, 170, 255, 0.4);
 
   animation: glowBreath 2.5s ease-in-out infinite;
 }
@@ -238,23 +238,23 @@ h2 {
 @keyframes glowBreath {
   0% {
     text-shadow: 
-      0 0 5px rgba(53, 197, 34, 0.4),
-      0 0 10px rgba(34, 197, 42, 0.3),
-      0 0 15px rgba(34, 197, 48, 0.2);
+      0 0 5px rgba(0, 170, 255, 0.4),
+      0 0 10px rgba(0, 140, 255, 0.3),
+      0 0 15px rgba(0, 120, 255, 0.2);
   }
 
   50% {
     text-shadow: 
-      0 0 10px rgba(53, 197, 34, 0.8),
-      0 0 20px rgba(40, 197, 34, 0.7),
-      0 0 35px rgba(40, 197, 34, 0.6);
+      0 0 10px rgba(0, 190, 255, 0.8),
+      0 0 20px rgba(0, 170, 255, 0.7),
+      0 0 35px rgba(0, 140, 255, 0.6);
   }
 
   100% {
     text-shadow: 
-      0 0 5px rgba(40, 197, 34, 0.4),
-      0 0 10px rgba(61, 197, 34, 0.3),
-      0 0 15px rgba(34, 197, 34, 0.2);
+      0 0 5px rgba(0, 170, 255, 0.4),
+      0 0 10px rgba(0, 140, 255, 0.3),
+      0 0 15px rgba(0, 120, 255, 0.2);
   }
 }
 
@@ -339,29 +339,33 @@ h5 {
 
 
 /* 🧠 GLASS CONTENT BOX */
+/* 🖤 PREMIUM BLACK GLASS */
 .glass-content {
-  background: rgba(34, 197, 94, 0.05);
-  border: 1px solid rgba(27, 124, 2, 0.719);
-  backdrop-filter: blur(18px);
-  padding: 50px;
-  border-radius: 18px;
-  max-width: 1500px;
-  margin: auto;
+    background: rgba(0, 0, 0, 0.78);
 
-  box-shadow: 
-    0 0 30px rgba(23, 92, 2, 0.952),
-    inset 0 0 15px rgba(51, 131, 80, 0.04);
+    border: 1px solid rgba(34, 197, 94, 0.35);
 
-  position: relative;
-  z-index: 2;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
+    padding: 50px;
+    border-radius: 18px;
+
+    max-width: 1500px;
+    margin: auto;
+
+    box-shadow:
+        0 0 35px rgba(0, 255, 60, 0.12),
+        inset 0 0 25px rgba(255, 255, 255, 0.025);
+
+    position: relative;
+    z-index: 2;
 }
-
 
 /* 🏆 TITLE */
 .main-title {
   font-size: 5rem;
-  color: #0375aa;
+  color: #1abcd1;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.658);
 }
 
@@ -394,7 +398,7 @@ h5 {
 
 /* 🔹 BULLET GLOW */
 .content-list > li::before {
-  content: "•";
+  content: "*";
   position: absolute;
   left: 0;
   color: #00ff0d;
@@ -420,7 +424,7 @@ h5 {
 
 /* ✨ HOVER EFFECT (SUBTLE & PREMIUM) */
 .content-list > li:hover {
-  color: #000000;
+  color: #f5f5f5;
   text-shadow: 0 0 6px rgb(4, 194, 252);
   transition: color 0.3s ease;
 }
@@ -456,9 +460,9 @@ h5 {
   bottom: 0;
   right: 0;
 
-  height: 75vh;      /* 1/3 of screen height */
+  height: 63vh;      /* 1/3 of screen height */
   width: auto;       /* keeps aspect ratio */
 
-  z-index: 0;        /* behind glass box */
+  z-index: 10;        /* behind glass box */
   pointer-events: none; /* so it doesn't block clicks */
 }
