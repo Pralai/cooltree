@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CoolTree Cumulative Frequency</title>
-
 <style>
-
 * {
     box-sizing: border-box;
 }
-
 :root {
     --green: #03810a;
     --dark: #070a09;
@@ -19,16 +15,12 @@
     --border: rgba(255, 255, 255, 0.10);
     --muted: #7f8984;
 }
-
 body {
     margin: 0;
     min-height: 100vh;
     padding: 24px;
-
     color: white;
-
     font-family: Arial, Helvetica, sans-serif;
-
     background:
         radial-gradient(
             circle at 15% 10%,
@@ -42,607 +34,392 @@ body {
         ),
         var(--dark);
 }
-
 .app {
     width: min(1050px, 100%);
     margin: auto;
 }
-
 /* =========================
    HEADER
 ========================= */
-
 .header {
     text-align: center;
     margin-bottom: 22px;
 }
-
 .header h1 {
     margin: 0;
-
     color: var(--green);
-
     font-size: clamp(28px, 5vw, 46px);
-
     letter-spacing: 1px;
 }
-
 .header p {
     margin: 8px 0;
-
     color: var(--muted);
 }
-
 /* =========================
    GENERAL CARD
 ========================= */
-
 .card {
     border: 1px solid var(--border);
-
     border-radius: 22px;
-
     padding: 18px;
-
     background: var(--panel);
-
     backdrop-filter: blur(18px);
-
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.38);
 }
-
 .card h2 {
     margin: 0 0 13px;
-
     font-size: 17px;
-
     color: #dce5e0;
 }
-
 /* =========================
    INPUT AREA
 ========================= */
-
 .grid {
     display: grid;
-
     grid-template-columns: 1.15fr 0.85fr;
-
     gap: 16px;
 }
-
 textarea {
     width: 100%;
-
     height: 190px;
-
     resize: vertical;
-
     padding: 15px;
-
     border-radius: 15px;
-
     border: 1px solid var(--border);
-
     outline: none;
-
     color: white;
-
     background: rgba(0, 0, 0, 0.48);
-
     font: 14px/1.6 Consolas, monospace;
 }
-
 textarea:focus,
 input:focus {
     border-color: rgba(8, 134, 3, 0.493);
-
     box-shadow:
         0 0 0 3px rgba(50, 232, 117, 0.08);
 }
-
 /* =========================
    BUTTONS
 ========================= */
-
 .controls {
     display: flex;
-
     gap: 10px;
-
     margin-top: 12px;
 }
-
 button {
     border: 1px solid var(--border);
-
     border-radius: 13px;
-
     min-height: 46px;
-
     padding: 0 18px;
-
     color: white;
-
     background: rgba(255, 255, 255, 0.07);
-
     cursor: pointer;
-
     font-weight: 700;
-
     transition: 0.12s ease;
 }
-
 button:hover {
     background: rgba(255, 255, 255, 0.12);
 }
-
 button:active {
     transform: scale(0.97);
 }
-
 .primary {
     flex: 1;
-
     background: var(--green);
-
     color: #061009;
-
     border: 0;
 }
-
 /* =========================
    R VALUE
 ========================= */
-
 .r-box {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     font-size: 18px;
 }
-
 .r-box input {
     width: 140px;
-
     padding: 12px;
-
     border-radius: 12px;
-
     border: 1px solid var(--border);
-
     outline: none;
-
     color: white;
-
     background: rgba(0, 0, 0, 0.48);
-
     font-size: 18px;
 }
-
 .info {
     margin-top: 15px;
-
     padding: 13px;
-
     border-radius: 14px;
-
     background: rgba(0, 0, 0, 0.25);
-
     color: var(--muted);
-
     font-size: 13px;
-
     line-height: 1.6;
 }
-
 /* =========================
    ERROR
 ========================= */
-
 .error {
     margin-top: 10px;
-
     color: #ff0000;
-
     font-size: 13px;
 }
-
 /* =========================
    STATISTICS
 ========================= */
-
 .stats-card {
     margin-top: 16px;
 }
-
 .stats-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 10px;
 }
-
 .stat {
     padding: 14px;
-
     border-radius: 14px;
-
     background: rgba(255, 255, 255, 0.045);
-
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
-
 .stat span {
     display: block;
-
     color: #68736e;
-
     font-size: 11px;
-
     text-transform: uppercase;
-
     margin-bottom: 7px;
 }
-
 .stat strong {
     display: block;
-
     font-size: 18px;
-
     color: #eaf1ed;
 }
-
 .stats-grid .stat:nth-child(2) strong {
     color: #079402;
 }
-
 .stats-grid .stat:nth-child(3) strong {
     color: #fd0000;
 }
-
 /* =========================
    VIEWER
 ========================= */
-
 .viewer {
     margin-top: 16px;
 }
-
 .viewer-display {
     min-height: 310px;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     border-radius: 22px;
-
     border: 1px solid var(--border);
-
     background: rgba(0, 0, 0, 0.48);
-
     overflow: hidden;
 }
-
 .label {
     color: var(--muted);
-
     font-size: 13px;
-
     text-transform: uppercase;
-
     letter-spacing: 2px;
 }
-
 .big-value {
     margin: 12px 10px;
-
     max-width: 95%;
-
     overflow: auto;
-
     white-space: nowrap;
-
     font-size: clamp(48px, 11vw, 100px);
-
     line-height: 1;
-
     font-weight: 800;
-
     color: var(--green);
-
     scrollbar-width: none;
 }
-
 .big-value::-webkit-scrollbar {
     display: none;
 }
-
 .step {
     color: #68736e;
-
     font-size: 13px;
 }
-
 /* =========================
    NAVIGATION
 ========================= */
-
 .nav {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 12px;
-
     margin-top: 14px;
 }
-
 .nav button {
     min-height: 60px;
-
     font-size: 30px;
-
     color: var(--green);
 }
-
 .nav button:disabled {
     opacity: 0.25;
-
     cursor: not-allowed;
 }
-
 /* =========================
    DETAILS
 ========================= */
-
 .details {
     display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-
     margin-top: 14px;
 }
-
 .detail {
     padding: 13px;
-
     border-radius: 14px;
-
     background: rgba(255, 255, 255, 0.045);
-
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
-
 .detail span {
     display: block;
-
     color: #68736e;
-
     font-size: 11px;
-
     margin-bottom: 5px;
-
     text-transform: uppercase;
 }
-
 .detail strong {
     display: block;
-
     overflow: auto;
-
     white-space: nowrap;
 }
-
 /* =========================
    TABLE
 ========================= */
-
 .table-card {
     margin-top: 16px;
 }
-
 .table-wrap {
     max-height: 390px;
-
     overflow: auto;
-
     border-radius: 14px;
 }
-
 table {
     width: 100%;
-
     border-collapse: collapse;
-
     font-family: Consolas, monospace;
-
     font-size: 13px;
 }
-
 th,
 td {
     padding: 10px 12px;
-
     border-bottom:
         1px solid rgba(255, 255, 255, 0.06);
-
     text-align: right;
 }
-
 th {
     position: sticky;
-
     top: 0;
-
     background: #111613;
-
     color: var(--green);
 }
-
 td:first-child,
 th:first-child {
     text-align: center;
 }
-
 tr {
     cursor: pointer;
 }
-
 tr:hover {
     background: rgba(255, 255, 255, 0.04);
 }
-
 tr.active {
     background: rgba(50, 232, 117, 0.09);
 }
-
 tr.active td {
     color: var(--green);
-
     font-weight: 700;
 }
-
 .empty {
     color: #5e6863;
-
     text-align: center;
-
     padding: 35px 10px;
 }
-
 /* =========================
    MOBILE
 ========================= */
-
 @media (max-width: 760px) {
-
     body {
         padding: 14px;
     }
-
     .grid {
         grid-template-columns: 1fr;
     }
-
     .details {
         grid-template-columns: 1fr;
     }
-
     .stats-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 430px) {
-
     .stats-grid {
         grid-template-columns: 1fr;
     }
-
     .controls {
         flex-wrap: wrap;
     }
-
     .controls button {
         flex: 1;
     }
 }
-
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
     <!-- =========================
          HEADER
     ========================== -->
-
     <header class="header">
-
         <h1>COOLTREE</h1>
-
         <p>
             Cumulative Frequency & R-Value Viewer
         </p>
-
     </header>
-
-
     <!-- =========================
          INPUT + R VALUE
     ========================== -->
-
     <div class="grid">
-
         <!-- TRADE DATA -->
-
         <section class="card">
-
             <h2>
                 1. Paste Your Trade Results
             </h2>
-
             <textarea
                 id="dataInput"
                 placeholder="-0.5, -0.2, -0.4, 3, 3, 3, 3, -0.4, -0.7, 3"
             ></textarea>
-
             <div class="controls">
-
                 <button
                     class="primary"
                     onclick="calculateData()"
                 >
                     CALCULATE
                 </button>
-
                 <button onclick="loadExample()">
                     Example
                 </button>
-
                 <button onclick="clearAll()">
                     Clear
                 </button>
-
             </div>
-
             <div
                 id="error"
                 class="error"
             ></div>
-
         </section>
-
-
         <!-- R VALUE -->
-
         <section class="card">
-
             <h2>
                 2. R Value
             </h2>
-
             <div class="r-box">
-
                 <strong>
                     1R =
                 </strong>
-
                 <input
                     id="rValue"
                     type="number"
@@ -650,673 +427,434 @@ tr.active td {
                     value="10"
                     oninput="updateMoney()"
                 >
-
             </div>
-
             <div class="info">
-
                 Enter the monetary value of 1R.
-
                 <br><br>
-
                 <strong>
                     Example:
                 </strong>
-
                 cumulative R = -0.5
-
                 and
-
                 1R = 10
-
                 →
-
                 <strong>
                     -5
                 </strong>
-
             </div>
-
         </section>
-
     </div>
-
-
     <!-- =========================
          TRADING STATISTICS
     ========================== -->
-
     <section class="card stats-card">
-
         <h2>
             Trading Statistics
         </h2>
-
         <div class="stats-grid">
-
             <div class="stat">
-
                 <span>
                     Trades
                 </span>
-
                 <strong id="statTrades">
                     0
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Wins
                 </span>
-
                 <strong id="statWins">
                     0
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Losses
                 </span>
-
                 <strong id="statLosses">
                     0
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Gross Profit
                 </span>
-
                 <strong id="statGrossProfit">
                     0 R
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Gross Loss
                 </span>
-
                 <strong id="statGrossLoss">
                     0 R
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Net PNL
                 </span>
-
                 <strong id="statNetPnL">
                     0 R
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Win Rate
                 </span>
-
                 <strong id="statWinRate">
                     0%
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     Profit Factor
                 </span>
-
                 <strong id="statProfitFactor">
                     0
                 </strong>
-
             </div>
-
-
             <div class="stat">
-
                 <span>
                     AVG RR
                 </span>
-
                 <strong id="statAvgRR">
                     0 R
                 </strong>
-
             </div>
-
         </div>
-
     </section>
-
-
     <!-- =========================
          BIG VALUE VIEWER
     ========================== -->
-
     <section class="card viewer">
-
         <h2>
             3. Cumulative Value Viewer
         </h2>
-
         <div class="viewer-display">
-
             <div class="label">
                 Cumulative Money Value
             </div>
-
             <div
                 class="big-value"
                 id="bigValue"
             >
                 0
             </div>
-
             <div
                 class="step"
                 id="stepText"
             >
                 No data loaded
             </div>
-
         </div>
-
-
         <div class="nav">
-
             <button
                 id="prevBtn"
                 onclick="move(-1)"
             >
                 &lt;
             </button>
-
             <button
                 id="nextBtn"
                 onclick="move(1)"
             >
                 &gt;
             </button>
-
         </div>
-
-
         <div class="details">
-
             <div class="detail">
-
                 <span>
                     Trade
                 </span>
-
                 <strong id="tradeDetail">
                     -
                 </strong>
-
             </div>
-
-
             <div class="detail">
-
                 <span>
                     Trade Result
                 </span>
-
                 <strong id="tradeResult">
                     -
                 </strong>
-
             </div>
-
-
             <div class="detail">
-
                 <span>
                     Cumulative R
                 </span>
-
                 <strong id="cumulativeR">
                     -
                 </strong>
-
             </div>
-
+            <div class="detail">
+                <span>
+                    80% Profit Split
+                </span>
+                <strong id="profitSplit80">
+                    -
+                </strong>
+            </div>
         </div>
-
     </section>
-
-
     <!-- =========================
          COMPLETE TABLE
     ========================== -->
-
     <section class="card table-card">
-
         <h2>
             All Cumulative Values
         </h2>
-
         <div class="table-wrap">
-
             <table>
-
                 <thead>
-
                     <tr>
-
                         <th>
                             Trade
                         </th>
-
                         <th>
                             Result (R)
                         </th>
-
                         <th>
                             Cumulative R
                         </th>
-
                         <th>
                             Money Value
                         </th>
-
+                        <th>
+                            80% Split
+                        </th>
                     </tr>
-
                 </thead>
-
                 <tbody id="tableBody">
-
                     <tr>
-
                         <td
-                            colspan="4"
+                            colspan="5"
                             class="empty"
                         >
                             Paste your data and press
                             CALCULATE
                         </td>
-
                     </tr>
-
                 </tbody>
-
             </table>
-
         </div>
-
     </section>
-
 </div>
-
-
 <script>
-
 /* =====================================================
    EXAMPLE DATA
 ===================================================== */
-
 const exampleData =
 `-0.5, -0.2, -0.4, 3, 3, 3, 3, -0.4, -0.7, 3, 3, -0.5, 3, -0.5, -0.5, -0.5, -0.5, -0.5, 3, 3, -0.5, -0.5, -0.5, 3, -0.5, -0.5, -0.5, 3, -0.5, 3, -0.5, 3, 3, -0.5, -0.5`;
-
-
 /* =====================================================
    DATA VARIABLES
 ===================================================== */
-
 let trades = [];
-
 let cumulative = [];
-
 let currentIndex = -1;
-
-
 /* =====================================================
    DOM ELEMENTS
 ===================================================== */
-
 const dataInput =
     document.getElementById("dataInput");
-
 const rValue =
     document.getElementById("rValue");
-
 const errorBox =
     document.getElementById("error");
-
 const bigValue =
     document.getElementById("bigValue");
-
 const stepText =
     document.getElementById("stepText");
-
 const prevBtn =
     document.getElementById("prevBtn");
-
 const nextBtn =
     document.getElementById("nextBtn");
-
 const tradeDetail =
     document.getElementById("tradeDetail");
-
 const tradeResult =
     document.getElementById("tradeResult");
-
 const cumulativeR =
     document.getElementById("cumulativeR");
-
+const profitSplit80 =
+    document.getElementById("profitSplit80");
 const tableBody =
     document.getElementById("tableBody");
-
-
 /* =====================================================
    STAT DOM ELEMENTS
 ===================================================== */
-
 const statTrades =
     document.getElementById("statTrades");
-
 const statWins =
     document.getElementById("statWins");
-
 const statLosses =
     document.getElementById("statLosses");
-
 const statGrossProfit =
     document.getElementById("statGrossProfit");
-
 const statGrossLoss =
     document.getElementById("statGrossLoss");
-
 const statNetPnL =
     document.getElementById("statNetPnL");
-
 const statWinRate =
     document.getElementById("statWinRate");
-
 const statProfitFactor =
     document.getElementById("statProfitFactor");
-
 const statAvgRR =
     document.getElementById("statAvgRR");
-
-
 /* =====================================================
    NUMBER FORMATTING
 ===================================================== */
-
 function cleanNumber(number) {
-
     if (!Number.isFinite(number)) {
         return 0;
     }
-
     const value =
         Number(number.toPrecision(12));
-
     return Object.is(value, -0)
         ? 0
         : value;
 }
-
-
 function formatNumber(number) {
-
     if (!Number.isFinite(number)) {
         return "Error";
     }
-
     return String(
         cleanNumber(number)
     );
 }
-
-
 /* =====================================================
    PARSE INPUT DATA
 ===================================================== */
-
 function parseData() {
-
     const raw =
         dataInput.value.trim();
-
     if (!raw) {
-
         throw new Error(
             "Please paste your trade results first."
         );
-
     }
-
-
     /*
        Allows:
-
        -0.5, -0.2, 3, 3
-
        or
-
        -0.5
        -0.2
        3
        3
-
        or mixed formats.
     */
-
     const parts =
         raw
         .split(/[\s,]+/)
         .filter(Boolean);
-
-
     return parts.map(
         (part, index) => {
-
             const number =
                 Number(part);
-
-
             if (!Number.isFinite(number)) {
-
                 throw new Error(
                     `Invalid value at position ${index + 1}: "${part}"`
                 );
-
             }
-
-
             return number;
-
         }
     );
 }
-
-
 /* =====================================================
    CALCULATE EVERYTHING
 ===================================================== */
-
 function calculateData() {
-
     try {
-
         errorBox.textContent = "";
-
         trades =
             parseData();
-
-
         /*
            Calculate cumulative frequency
         */
-
         cumulative = [];
-
         let total = 0;
-
-
         trades.forEach(
             value => {
-
                 total =
                     cleanNumber(
                         total + value
                     );
-
                 cumulative.push(total);
-
             }
         );
-
-
         currentIndex = 0;
-
-
         updateStats();
-
         render();
-
         renderTable();
-
-
     } catch (error) {
-
         errorBox.textContent =
             error.message;
-
         trades = [];
-
         cumulative = [];
-
         currentIndex = -1;
-
-
         updateStats();
-
         render();
-
         renderTable();
-
     }
-
 }
-
-
 /* =====================================================
    GET R VALUE
 ===================================================== */
-
 function getRValue() {
-
     const value =
         Number(rValue.value);
-
-
     return Number.isFinite(value)
         ? value
         : 0;
 }
-
-
 /* =====================================================
    UPDATE WHEN R VALUE CHANGES
 ===================================================== */
-
 function updateMoney() {
-
     updateStats();
-
     render();
-
     renderTable();
-
 }
-
-
 /* =====================================================
    TRADING STATISTICS
 ===================================================== */
-
 function updateStats() {
-
     const totalTrades =
         trades.length;
-
-
     /*
        Wins
        Anything greater than 0
     */
-
     const wins =
         trades.filter(
             value => value > 0
         );
-
-
     /*
        Losses
        Anything less than 0
     */
-
     const losses =
         trades.filter(
             value => value < 0
         );
-
-
     const winCount =
         wins.length;
-
-
     const lossCount =
         losses.length;
-
-
     /*
        Gross Profit
     */
-
     const grossProfit =
         wins.reduce(
             (total, value) =>
                 total + value,
             0
         );
-
-
     /*
        Gross Loss
        Stored as positive magnitude
     */
-
     const grossLoss =
         Math.abs(
             losses.reduce(
@@ -1325,177 +863,118 @@ function updateStats() {
                 0
             )
         );
-
-
     /*
        Net PNL
     */
-
     const netPnL =
         grossProfit - grossLoss;
-
-
     /*
        Win Rate
     */
-
     const winRate =
         totalTrades > 0
             ? (winCount / totalTrades) * 100
             : 0;
-
-
     /*
        Profit Factor
     */
-
     let profitFactor;
-
-
     if (grossLoss === 0) {
-
         profitFactor =
             grossProfit > 0
                 ? Infinity
                 : 0;
-
     } else {
-
         profitFactor =
             grossProfit / grossLoss;
-
     }
-
-
     /*
        Average Win
     */
-
     const averageWin =
         winCount > 0
             ? grossProfit / winCount
             : 0;
-
-
     /*
        Average Loss
     */
-
     const averageLoss =
         lossCount > 0
             ? grossLoss / lossCount
             : 0;
-
-
     /*
        Average RR
-
        Average Win / Average Loss
     */
-
     const avgRR =
         averageLoss > 0
             ? averageWin / averageLoss
             : 0;
-
-
     /*
        Display statistics
     */
-
     statTrades.textContent =
         totalTrades;
-
-
     statWins.textContent =
         winCount;
-
-
     statLosses.textContent =
         lossCount;
-
-
     statGrossProfit.textContent =
         formatNumber(
             grossProfit
         ) + " R";
-
-
     statGrossLoss.textContent =
         "-" +
         formatNumber(
             grossLoss
         ) +
         " R";
-
-
     statNetPnL.textContent =
         formatNumber(
             netPnL
         ) + " R";
-
-
     statWinRate.textContent =
         formatNumber(
             winRate
         ) + "%";
-
-
     statProfitFactor.textContent =
         profitFactor === Infinity
             ? "∞"
             : formatNumber(
                 profitFactor
             );
-
-
     statAvgRR.textContent =
         formatNumber(
             avgRR
         ) + " R";
-
 }
-
-
 /* =====================================================
    RENDER BIG VIEWER
 ===================================================== */
-
 function render() {
-
     /*
        No data
     */
-
     if (cumulative.length === 0) {
-
         bigValue.textContent =
             "0";
-
         stepText.textContent =
             "No data loaded";
-
         tradeDetail.textContent =
             "-";
-
         tradeResult.textContent =
             "-";
-
         cumulativeR.textContent =
             "-";
-
+        profitSplit80.textContent =
+            "-";
         prevBtn.disabled = true;
-
         nextBtn.disabled = true;
-
         return;
     }
-
-
     /*
        Keep index inside range
     */
-
     const index =
         Math.max(
             0,
@@ -1504,125 +983,87 @@ function render() {
                 cumulative.length - 1
             )
         );
-
-
     /*
        Convert cumulative R
        into money
     */
-
     const moneyValue =
         cleanNumber(
             cumulative[index] *
             getRValue()
         );
 
-
+    const split80 =
+        cleanNumber(
+            moneyValue * 0.80
+        );
     /*
        Big display
     */
-
     bigValue.textContent =
         formatNumber(
             moneyValue
         );
-
-
     /*
        Trade counter
     */
-
     stepText.textContent =
         `Trade ${index + 1} / ${trades.length}`;
-
-
     /*
        Details
     */
-
     tradeDetail.textContent =
         index + 1;
-
-
     tradeResult.textContent =
         formatNumber(
             trades[index]
         ) + " R";
-
-
     cumulativeR.textContent =
         formatNumber(
             cumulative[index]
         ) + " R";
 
-
+    profitSplit80.textContent =
+        formatNumber(split80);
     /*
        Navigation buttons
     */
-
     prevBtn.disabled =
         index <= 0;
-
-
     nextBtn.disabled =
         index >= cumulative.length - 1;
-
-
     highlightRow();
-
 }
-
-
 /* =====================================================
    MOVE BACK / FORWARD
 ===================================================== */
-
 function move(direction) {
-
     if (cumulative.length === 0) {
         return;
     }
-
-
     const nextIndex =
         currentIndex + direction;
-
-
     if (
         nextIndex < 0 ||
         nextIndex >= cumulative.length
     ) {
         return;
     }
-
-
     currentIndex =
         nextIndex;
-
-
     render();
-
-
     scrollActiveRow();
-
 }
-
-
 /* =====================================================
    RENDER TABLE
 ===================================================== */
-
 function renderTable() {
-
     tableBody.innerHTML = "";
-
-
     if (cumulative.length === 0) {
-
         tableBody.innerHTML = `
             <tr>
                 <td
-                    colspan="4"
+                    colspan="5"
                     class="empty"
                 >
                     Paste your data and press
@@ -1630,214 +1071,146 @@ function renderTable() {
                 </td>
             </tr>
         `;
-
         return;
     }
-
-
     cumulative.forEach(
         (value, index) => {
-
             const row =
                 document.createElement(
                     "tr"
                 );
-
-
             row.dataset.index =
                 index;
-
-
             /*
                Clicking a row jumps
                directly to that trade.
             */
-
             row.onclick = () => {
-
                 currentIndex =
                     index;
-
                 render();
-
                 scrollActiveRow();
-
             };
-
-
             const moneyValue =
                 cleanNumber(
                     value *
                     getRValue()
                 );
 
-
+            const split80 =
+                cleanNumber(
+                    moneyValue * 0.80
+                );
             row.innerHTML = `
-
                 <td>
                     ${index + 1}
                 </td>
-
                 <td>
                     ${formatNumber(
                         trades[index]
                     )}
                 </td>
-
                 <td>
                     ${formatNumber(
                         value
                     )}
                 </td>
-
                 <td>
                     ${formatNumber(
                         moneyValue
                     )}
                 </td>
-
+                <td>
+                    ${formatNumber(
+                        split80
+                    )}
+                </td>
             `;
-
-
             tableBody.appendChild(
                 row
             );
-
         }
     );
-
-
     highlightRow();
-
 }
-
-
 /* =====================================================
    HIGHLIGHT CURRENT TRADE
 ===================================================== */
-
 function highlightRow() {
-
     document
         .querySelectorAll(
             "#tableBody tr"
         )
         .forEach(
             row => {
-
                 row.classList.toggle(
                     "active",
                     Number(
                         row.dataset.index
                     ) === currentIndex
                 );
-
             }
         );
-
 }
-
-
 /* =====================================================
    SCROLL CURRENT ROW INTO VIEW
 ===================================================== */
-
 function scrollActiveRow() {
-
     const row =
         document.querySelector(
             `#tableBody tr[data-index="${currentIndex}"]`
         );
-
-
     if (row) {
-
         row.scrollIntoView({
             block: "nearest",
             behavior: "smooth"
         });
-
     }
-
 }
-
-
 /* =====================================================
    LOAD EXAMPLE
 ===================================================== */
-
 function loadExample() {
-
     dataInput.value =
         exampleData;
-
-
     rValue.value =
         10;
-
-
     calculateData();
-
 }
-
-
 /* =====================================================
    CLEAR EVERYTHING
 ===================================================== */
-
 function clearAll() {
-
     dataInput.value =
         "";
-
-
     trades = [];
-
     cumulative = [];
-
     currentIndex = -1;
-
-
     errorBox.textContent =
         "";
-
-
     updateStats();
-
     render();
-
     renderTable();
-
 }
-
-
 /* =====================================================
    KEYBOARD CONTROLS
 ===================================================== */
-
 document.addEventListener(
     "keydown",
     event => {
-
         /*
            Don't trigger navigation
            while typing in input fields.
         */
-
         if (
             event.target.tagName === "TEXTAREA" ||
             event.target.tagName === "INPUT"
         ) {
-
             return;
-
         }
-
-
         /*
            Previous
         */
-
         if (
             event.key === "ArrowLeft"
         ) {
