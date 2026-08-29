@@ -1,3 +1,13 @@
+
+/* =========================================================
+   🌳 COOL TREE UNIVERSE
+   ========================================================= */
+
+
+/* =========================================================
+   🔤 DEFAULT FONT
+   ========================================================= */
+
 * {
   font-family: "MV Boli", "Comic Sans MS", cursive !important;
 }
@@ -10,7 +20,11 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌌 PARALLAX */
+
+/* =========================================================
+   🌌 PARALLAX
+   ========================================================= */
+
 .parallax .layer {
   position: fixed;
   width: 100%;
@@ -37,7 +51,11 @@ body {
   z-index: -1;
 }
 
-/* ☁️ Clouds */
+
+/* =========================================================
+   ☁️ CLOUDS
+   ========================================================= */
+
 .cloud {
   position: fixed;
   background: white;
@@ -60,11 +78,20 @@ body {
 }
 
 @keyframes cloudMove {
-  from { transform: translateX(-200px); }
-  to { transform: translateX(120vw); }
+  from {
+    transform: translateX(-200px);
+  }
+
+  to {
+    transform: translateX(120vw);
+  }
 }
 
-/* 🌧️ Rain */
+
+/* =========================================================
+   🌧️ RAIN
+   ========================================================= */
+
 .rain {
   position: fixed;
   top: 0;
@@ -72,7 +99,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 11; /* above background */
+  z-index: 11;
 }
 
 .drop {
@@ -84,177 +111,137 @@ body {
 }
 
 @keyframes rainFall {
-  to { transform: translateY(100vh); }
+  to {
+    transform: translateY(100vh);
+  }
 }
 
-/* 🚀 Sections */
+
+/* =========================================================
+   🚀 SECTIONS
+   ========================================================= */
+
 section {
   min-height: 100vh;
   padding: 80px;
 }
 
 
-/* 🧠 HERO */
+/* =========================================================
+   🧠 HERO
+   ========================================================= */
+
 .hero {
   text-align: center;
   font-size: 2rem;
+
+  position: relative;
+  height: 100vh;
+
+  background: url('your-image.jpg') no-repeat center center/cover;
+
+  z-index: 1;
 }
 
-/* 🟢 CARDS */
+
+/* =========================================================
+   🟢 CARDS
+   ========================================================= */
+
 .card {
   background: rgba(34,197,94,0.08);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(34,197,94,0.2);
+
   padding: 20px;
   margin: 20px 0;
+
   border-radius: 15px;
+
   transition: 0.3s;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(34,197,94,0.4);
+
+  box-shadow:
+    0 0 20px rgba(34,197,94,0.4);
 }
 
-/* BUTTON */
+
+/* =========================================================
+   🔘 BUTTON
+   ========================================================= */
+
 button {
   background: #3fc524;
   border: none;
+
   padding: 10px 20px;
+
   color: black;
+
   border-radius: 8px;
+
   cursor: pointer;
 }
+
+.btn-success {
+  background: linear-gradient(
+    45deg,
+    #279411,
+    #1a8f02
+  );
+
+  border: none;
+
+  color: black;
+
+  transition: 0.3s;
+}
+
+.btn-success:hover {
+  background: linear-gradient(
+    45deg,
+    #970a0a00,
+    #27940b00
+  );
+
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 15px rgba(35, 146, 7, 0.6);
+
+  color: rgb(0, 255, 0);
+}
+
+
+/* =========================================================
+   ✨ HEADINGS
+   ========================================================= */
 
 .display-5 {
   text-shadow: 0 0 8px #00740c;
 }
 
-/* 💳 PAYMENT */
-.payment-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.glass-box {
-  background: rgba(0, 0, 0, 0.253);
-  border: 1px solid rgba(48, 206, 34, 0.3);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.glass-box img {
-  width: 200px;
-  margin: 20px;
-}
-
-.upi {
-  background: rgba(48, 197, 34, 0.2);
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* 🔥 CUSTOM BUTTON */
-.btn-success {
-  background: linear-gradient(45deg, #279411, #1a8f02);
-  border: none;
-  color: black;
-  transition: 0.3s;
-}
-
-.btn-success:hover {
-  background: linear-gradient(45deg, #970a0a00, #27940b00);
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(35, 146, 7, 0.6);
-  color: rgb(0, 255, 0);
-}
-
-.icon-green {
-  color: #c52222;
-}
-
-.icon-glow {
-  color: #22c55e;
-  text-shadow: 0 0 10px rgba(34,197,94,0.8);
-}
-
-
-/* 🔴 FORCE ALL ICONS RED */
-i.bi {
-  color: #1a9e16 !important;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-/* 💥 HOVER EFFECT */
-i.bi:hover {
-  transform: scale(1.25) rotate(6deg);
-  color: #06a6bb !important;
-  text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
-}
-
-/* ⚡ CLICK EFFECT */
-i.bi:active {
-  transform: scale(0.9);
-  text-shadow: 0 0 25px rgba(255, 0, 0, 1);
-}
-
-@keyframes pulseGlow {
-  0% { text-shadow: 0 0 5px rgba(255,0,0,0.4); }
-  50% { text-shadow: 0 0 20px rgba(238, 255, 0, 0.493); }
-  100% { text-shadow: 0 0 5px rgba(255,0,0,0.4); }
-}
-
-.icon {
-  animation: pulseGlow 2s infinite;
-}
-
-.course-description {
-  color: #35c711; /* red */
-}
-
 h1 {
   color: #228d0d;
-  text-shadow: 0 0 15px rgba(7, 51, 2, 0.8);
+
+  text-shadow:
+    0 0 15px rgba(7, 51, 2, 0.8);
 }
 
 h2 {
   font-size: 2.8rem;
+
   color: #00aaff;
 
-  text-shadow: 
+  text-shadow:
     0 0 5px rgba(0, 170, 255, 0.8),
     0 0 10px rgba(0, 170, 255, 0.5),
     0 0 20px rgba(0, 170, 255, 0.4);
 
   animation: glowBreath 2.5s ease-in-out infinite;
-}
-
-@keyframes glowBreath {
-  0% {
-    text-shadow: 
-      0 0 5px rgba(0, 170, 255, 0.4),
-      0 0 10px rgba(0, 140, 255, 0.3),
-      0 0 15px rgba(0, 120, 255, 0.2);
-  }
-
-  50% {
-    text-shadow: 
-      0 0 10px rgba(0, 190, 255, 0.8),
-      0 0 20px rgba(0, 170, 255, 0.7),
-      0 0 35px rgba(0, 140, 255, 0.6);
-  }
-
-  100% {
-    text-shadow: 
-      0 0 5px rgba(0, 170, 255, 0.4),
-      0 0 10px rgba(0, 140, 255, 0.3),
-      0 0 15px rgba(0, 120, 255, 0.2);
-  }
 }
 
 h4 {
@@ -266,53 +253,186 @@ h5 {
 }
 
 .lead {
-  color : #228d0d;
+  color: #228d0d;
 }
 
-/* 🌿 TITLE SAME AS ICONS */
+
+/* =========================================================
+   🌿 MAIN COURSE TITLE
+   ========================================================= */
+
 .main-course {
-  color: #1a9e16; /* same green as icons */
+  color: #1a9e16;
+
   transition: all 0.3s ease;
+
   cursor: pointer;
 
-  /* base glow */
-  text-shadow: 0 0 5px rgba(255, 0, 0, 0.247);
+  text-shadow:
+    0 0 5px rgba(255, 0, 0, 0.247);
 
-  /* same animation */
   animation: pulseGlow 3s infinite;
 }
 
-/* 💥 HOVER (same behavior) */
 .main-course:hover {
-  transform: scale(1.1) rotate(2deg); /* slightly less rotate for class look */
+  transform: scale(1.1) rotate(2deg);
+
   color: #06a6bb;
-  text-shadow: 0 0 15px rgba(255, 0, 0, 0.438);
+
+  text-shadow:
+    0 0 15px rgba(255, 0, 0, 0.438);
 }
 
-/* ⚡ CLICK */
 .main-course:active {
   transform: scale(0.95);
-  text-shadow: 0 0 25px rgba(255, 0, 0, 0.459);
+
+  text-shadow:
+    0 0 25px rgba(255, 0, 0, 0.459);
 }
+
+
+/* =========================================================
+   💡 GLOW ANIMATIONS
+   ========================================================= */
+
+@keyframes pulseGlow {
+
+  0% {
+    text-shadow:
+      0 0 5px rgba(255,0,0,0.4);
+  }
+
+  50% {
+    text-shadow:
+      0 0 20px rgba(238, 255, 0, 0.493);
+  }
+
+  100% {
+    text-shadow:
+      0 0 5px rgba(255,0,0,0.4);
+  }
+
+}
+
+@keyframes glowBreath {
+
+  0% {
+    text-shadow:
+      0 0 5px rgba(0, 170, 255, 0.4),
+      0 0 10px rgba(0, 140, 255, 0.3),
+      0 0 15px rgba(0, 120, 255, 0.2);
+  }
+
+  50% {
+    text-shadow:
+      0 0 10px rgba(0, 190, 255, 0.8),
+      0 0 20px rgba(0, 170, 255, 0.7),
+      0 0 35px rgba(0, 140, 255, 0.6);
+  }
+
+  100% {
+    text-shadow:
+      0 0 5px rgba(0, 170, 255, 0.4),
+      0 0 10px rgba(0, 140, 255, 0.3),
+      0 0 15px rgba(0, 120, 255, 0.2);
+  }
+
+}
+
+
+/* =========================================================
+   📊 COURSE DESCRIPTION
+   ========================================================= */
+
+.course-description {
+  color: #35c711;
+}
+
+
+/* =========================================================
+   🟢 ICONS
+   ========================================================= */
+
+.icon-green {
+  color: #c52222;
+}
+
+.icon-glow {
+  color: #22c55e;
+
+  text-shadow:
+    0 0 10px rgba(34,197,94,0.8);
+}
+
+
+/* FORCE ALL ICONS GREEN */
+
+i.bi {
+  color: #1a9e16 !important;
+
+  transition: all 0.3s ease;
+
+  cursor: pointer;
+}
+
+
+/* ICON HOVER */
+
+i.bi:hover {
+  transform: scale(1.25) rotate(6deg);
+
+  color: #06a6bb !important;
+
+  text-shadow:
+    0 0 15px rgba(255, 0, 0, 0.9);
+}
+
+
+/* ICON CLICK */
+
+i.bi:active {
+  transform: scale(0.9);
+
+  text-shadow:
+    0 0 25px rgba(255, 0, 0, 1);
+}
+
+.icon {
+  animation: pulseGlow 2s infinite;
+}
+
+
+/* =========================================================
+   ⚡ LIGHTNING
+   ========================================================= */
 
 .lightning-svg {
   position: fixed;
+
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
+
   pointer-events: none;
+
   z-index: 999;
 }
 
 .lightning-path {
   stroke: #fdfdfd;
+
   stroke-width: 2;
+
   fill: none;
+
   opacity: 0;
-  filter: drop-shadow(0 0 8px #fff)
-          drop-shadow(0 0 15px #00ffcc)
-          drop-shadow(0 0 25px #00ffcc);
+
+  filter:
+    drop-shadow(0 0 8px #fff)
+    drop-shadow(0 0 15px #00ffcc)
+    drop-shadow(0 0 25px #00ffcc);
 }
 
 .lightning-path.active {
@@ -320,200 +440,597 @@ h5 {
 }
 
 @keyframes lightningFlash {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  100% { opacity: 0; }
+
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
 }
 
-.hero {
-  position: relative;
+
+/* =========================================================
+   💳 PAYMENT
+   ========================================================= */
+
+.payment-page {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
   height: 100vh;
-  background: url('your-image.jpg') no-repeat center center/cover;
-  z-index: 1;
 }
 
-/* 🖤 PREMIUM BLACK GLASS */
+.glass-box {
+  background: rgba(0, 0, 0, 0.253);
+
+  border: 1px solid rgba(48, 206, 34, 0.3);
+
+  backdrop-filter: blur(15px);
+
+  padding: 40px;
+
+  border-radius: 20px;
+
+  text-align: center;
+}
+
+.glass-box img {
+  width: 200px;
+
+  margin: 20px;
+}
+
+.upi {
+  background: rgba(48, 197, 34, 0.2);
+
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   🖤 PREMIUM BLACK GLASS
+   ========================================================= */
+
 .glass-content {
-    background: rgba(0, 0, 0, 0.78);
-    border: 1px solid rgba(34, 197, 94, 0.35);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    padding: 50px;
-    border-radius: 18px;
-    max-width: 1500px;
-    margin: auto;
-    box-shadow:
-        0 0 35px rgba(0, 255, 60, 0.12),
-        inset 0 0 25px rgba(255, 255, 255, 0.025);
-    position: relative;
-    z-index: 2;
+  background: rgba(0, 0, 0, 0.78);
+
+  border: 1px solid rgba(34, 197, 94, 0.35);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  padding: 50px;
+
+  border-radius: 18px;
+
+  max-width: 1500px;
+
+  margin: auto;
+
+  box-shadow:
+    0 0 35px rgba(0, 255, 60, 0.12),
+    inset 0 0 25px rgba(255, 255, 255, 0.025);
+
+  position: relative;
+
+  z-index: 2;
 }
 
-/* 🏆 TITLE */
+
+/* =========================================================
+   🏆 TITLE
+   ========================================================= */
+
 .main-title {
   font-size: 5rem;
+
   color: #1abcd1;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.658);
+
+  text-shadow:
+    0 0 8px rgba(0, 0, 0, 0.658);
 }
 
 
-/* ✨ SUBTITLE */
+/* =========================================================
+   ✨ SUBTITLE
+   ========================================================= */
+
 .subtitle {
   color: #0375aa;
+
   letter-spacing: 2px;
+
   font-size: 2rem;
 }
 
-/* 📜 LIST STYLE */
+
+/* =========================================================
+   📜 CONTENT LIST
+   ========================================================= */
+
 .content-list {
-  list-style:none;
+  list-style: none;
+
   padding: 0;
 }
 
-/* MAIN POINTS */
 .content-list > li {
   margin-bottom: 18px;
+
   padding-left: 22px;
+
   position: relative;
+
   color: rgba(21, 255, 0, 0.9);
+
   font-size: 2rem;
+
   line-height: 1.7;
 }
 
-/* 🔹 BULLET GLOW */
 .content-list > li::before {
   content: "*";
+
   position: absolute;
+
   left: 0;
+
   color: #00ff0d;
-  text-shadow: 0 0 6px rgba(0, 255, 34, 0.575);
+
+  text-shadow:
+    0 0 6px rgba(0, 255, 34, 0.575);
 }
 
-/* SUB LIST */
 .content-list ul {
   margin-top: 10px;
+
   padding-left: 18px;
 }
 
-/* SUB POINTS */
 .content-list ul li {
   font-size: 1.6rem;
+
   color: rgba(0, 247, 255, 0.705);
+
   margin-bottom: 6px;
+
   line-height: 1.6;
 }
 
-/* ✨ HOVER EFFECT (SUBTLE & PREMIUM) */
 .content-list > li:hover {
   color: #f5f5f5;
-  text-shadow: 0 0 6px rgb(4, 194, 252);
+
+  text-shadow:
+    0 0 6px rgb(4, 194, 252);
+
   transition: color 0.3s ease;
 }
 
-/*Channel Logo*/
+
+/* =========================================================
+   📺 CHANNEL LOGO
+   ========================================================= */
+
 .logo-link {
   position: fixed;
+
   top: 20px;
   left: 20px;
+
   z-index: 1000;
 }
 
 .logo-img {
-  width: 75px; /* adjust size here */
+  width: 75px;
+
   height: auto;
+
   cursor: pointer;
 
-  /* subtle premium glow */
-  filter: drop-shadow(0 0 6px rgba(40, 197, 34, 0.4));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter:
+    drop-shadow(0 0 6px rgba(40, 197, 34, 0.4));
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
-/* hover effect */
 .logo-img:hover {
   transform: scale(1.08);
-  filter: drop-shadow(0 0 12px rgba(61, 197, 34, 0.7));
+
+  filter:
+    drop-shadow(0 0 12px rgba(61, 197, 34, 0.7));
 }
 
-/* 🌳 FIXED TREE */
+
+/* =========================================================
+   🌳 FIXED COOL TREE
+   ========================================================= */
+
 .cool-tree {
   position: fixed;
+
   bottom: 0;
   right: 0;
-  height: 63vh;      /* 1/3 of screen height */
-  width: auto;       /* keeps aspect ratio */
-  z-index: 10;        /* behind glass box */
-  pointer-events: none; /* so it doesn't block clicks */
+
+  height: 63vh;
+
+  width: auto;
+
+  z-index: 10;
+
+  pointer-events: none;
 }
 
-/* ================================
-   📱 MOBILE OPTIMIZATION
-   ================================ */
+
+/* =========================================================
+   📱📱📱 MOBILE VERSION
+   ========================================================= */
 
 @media screen and (max-width: 768px) {
 
-    /* 🌳 CoolTree */
-    .cool-tree {
-        position: fixed !important;
+  /* -----------------------------------------
+     🔤 MOBILE FONT
+     ----------------------------------------- */
 
-        width: 80px !important;
-        height: auto !important;
-
-        max-width: none !important;
-        max-height: none !important;
-
-        right: 8px !important;
-        bottom: 8px !important;
-        left: auto !important;
-        top: auto !important;
-
-        z-index: 5 !important;
-        pointer-events: none !important;
-    }
+  html,
+  body,
+  body *,
+  body *::before,
+  body *::after {
+    font-family: Arial, sans-serif !important;
+  }
 
 
-    /* 🔤 Clean mobile font */
-    * {
-        font-family: Arial, sans-serif !important;
-    }
+  /* -----------------------------------------
+     🌳 MOBILE TREE
+     ----------------------------------------- */
+
+  body img.cool-tree {
+    position: fixed !important;
+
+    width: 70px !important;
+
+    height: auto !important;
+
+    max-width: 70px !important;
+    max-height: none !important;
+
+    right: 8px !important;
+    bottom: 8px !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    z-index: 5 !important;
+
+    pointer-events: none !important;
+  }
 
 
-    /* 📱 Better mobile spacing */
-    section {
-        padding: 50px 15px !important;
-    }
+  /* -----------------------------------------
+     📐 MOBILE SECTIONS
+     ----------------------------------------- */
+
+  section {
+    min-height: auto;
+
+    padding: 50px 15px !important;
+  }
 
 
-    /* 📱 Hero title */
-    .hero {
-        padding: 20px !important;
-    }
+  /* -----------------------------------------
+     🚀 MOBILE HERO
+     ----------------------------------------- */
+
+  .hero {
+    min-height: 100vh;
+
+    height: 100vh;
+
+    padding: 20px !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+  }
 
 
-    /* 📱 Course cards */
-    .card {
-        margin: 10px 0;
-    }
+  /* -----------------------------------------
+     🌿 MOBILE MAIN TITLE
+     ----------------------------------------- */
+
+  .main-course {
+    font-size: 2.4rem !important;
+
+    line-height: 1.15;
+
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
 
-    /* 📱 Headings */
-    h2 {
-        font-size: 2rem !important;
-    }
+  /* -----------------------------------------
+     👋 MOBILE WELCOME
+     ----------------------------------------- */
+
+  .display-5 {
+    font-size: 1.8rem !important;
+  }
 
 
-    /* 📱 Main title */
-    .main-course {
-        font-size: 2.5rem !important;
-    }
+  /* -----------------------------------------
+     📊 MOBILE SUBTITLE
+     ----------------------------------------- */
+
+  .lead {
+    font-size: 1rem !important;
+
+    line-height: 1.5;
+
+    padding: 0 15px;
+  }
 
 
-    /* 📱 Logo */
-    .logo-link {
-        top: 10px !important;
-        left: 10px !important;
-    }
+  /* -----------------------------------------
+     🟢 MOBILE CARDS
+     ----------------------------------------- */
 
-    .logo-img {
-        width: 55px !important;
-    }
+  .card {
+    margin: 10px 0;
+
+    padding: 20px 15px;
+
+    border-radius: 15px;
+  }
+
+
+  /* Disable large desktop hover scaling on touch devices */
+
+  .card:hover {
+    transform: none;
+  }
+
+
+  /* -----------------------------------------
+     📝 MOBILE CARD TEXT
+     ----------------------------------------- */
+
+  .card h4 {
+    font-size: 1.35rem !important;
+  }
+
+  .course-description {
+    font-size: 0.95rem !important;
+
+    line-height: 1.5;
+  }
+
+
+  /* -----------------------------------------
+     🔘 MOBILE BUTTONS
+     ----------------------------------------- */
+
+  .btn-success {
+    font-size: 0.9rem !important;
+
+    padding: 9px 16px !important;
+  }
+
+
+  /* -----------------------------------------
+     📱 MOBILE HEADINGS
+     ----------------------------------------- */
+
+  h2 {
+    font-size: 2rem !important;
+
+    line-height: 1.2;
+  }
+
+
+  /* -----------------------------------------
+     🛠️ MOBILE TOOLS
+     ----------------------------------------- */
+
+  #tools .card {
+    padding: 25px 15px;
+  }
+
+
+  /* -----------------------------------------
+     🏆 MOBILE GLASS CONTENT
+     ----------------------------------------- */
+
+  .glass-content {
+    padding: 25px 18px !important;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 15px;
+  }
+
+
+  /* -----------------------------------------
+     🏆 MOBILE LARGE TITLE
+     ----------------------------------------- */
+
+  .main-title {
+    font-size: 2.5rem !important;
+
+    line-height: 1.2;
+  }
+
+
+  /* -----------------------------------------
+     ✨ MOBILE SUBTITLE
+     ----------------------------------------- */
+
+  .subtitle {
+    font-size: 1.3rem !important;
+
+    letter-spacing: 1px;
+  }
+
+
+  /* -----------------------------------------
+     📜 MOBILE CONTENT LIST
+     ----------------------------------------- */
+
+  .content-list > li {
+    font-size: 1.15rem !important;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
+
+    padding-left: 18px;
+  }
+
+  .content-list ul li {
+    font-size: 1rem !important;
+
+    line-height: 1.5;
+  }
+
+
+  /* -----------------------------------------
+     📺 MOBILE LOGO
+     ----------------------------------------- */
+
+  .logo-link {
+    top: 10px !important;
+
+    left: 10px !important;
+  }
+
+  .logo-img {
+    width: 55px !important;
+
+    height: auto !important;
+  }
+
+
+  /* -----------------------------------------
+     💳 MOBILE PAYMENT
+     ----------------------------------------- */
+
+  .payment-page {
+    padding: 20px;
+
+    height: auto;
+
+    min-height: 100vh;
+  }
+
+  .glass-box {
+    width: 100%;
+
+    padding: 25px 15px;
+  }
+
+  .glass-box img {
+    width: 150px;
+
+    max-width: 80%;
+
+    margin: 15px;
+  }
+
+
+  /* -----------------------------------------
+     ☁️ MOBILE CLOUDS
+     ----------------------------------------- */
+
+  .cloud1 {
+    width: 120px;
+
+    height: 40px;
+
+    top: 60px;
+  }
+
+  .cloud2 {
+    width: 160px;
+
+    height: 50px;
+
+    top: 120px;
+  }
+
+
+  /* -----------------------------------------
+     🌧️ MOBILE RAIN
+     ----------------------------------------- */
+
+  .drop {
+    width: 1px;
+
+    height: 15px;
+  }
+
+
+  /* -----------------------------------------
+     ⚡ MOBILE LIGHTNING
+     ----------------------------------------- */
+
+  .lightning-svg {
+    z-index: 999;
+
+    pointer-events: none;
+  }
+
+}
+
+
+/* =========================================================
+   📱 SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 400px) {
+
+  .main-course {
+    font-size: 2rem !important;
+  }
+
+  .display-5 {
+    font-size: 1.5rem !important;
+  }
+
+  .lead {
+    font-size: 0.9rem !important;
+  }
+
+  h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .cool-tree {
+    width: 60px !important;
+
+    max-width: 60px !important;
+
+    right: 6px !important;
+
+    bottom: 6px !important;
+  }
+
+  .logo-img {
+    width: 48px !important;
+  }
+
 }
