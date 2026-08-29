@@ -376,24 +376,31 @@ tr.active td {
 </head>
 <body>
 
-<a href="index.html"
-   style="
-      position: fixed;
-      top: 18px;
-      left: 20px;
-      z-index: 1000;
-      display: block;
-   ">
+<style>
+.logo-link {
+    position: fixed;
+    top: 18px;
+    left: 20px;
+    z-index: 1000;
+}
 
-    <img src="Design.png"
-         alt="CoolTree Logo"
-         style="
-            width: 65px;
-            height: auto;
-            display: block;
-            cursor: pointer;
-         ">
-</a>
+.logo-img {
+    width: 65px;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 760px) {
+    .logo-link {
+        top: 12px;
+        left: 12px;
+    }
+
+    .logo-img {
+        width: 48px;
+    }
+}
+</style>
 
 <div class="app">
     <!-- =========================
