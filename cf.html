@@ -217,6 +217,12 @@ button:active {
     background: rgba(0, 0, 0, 0.48);
     overflow: hidden;
 }
+.viewer-values { width: 100%; display: flex; align-items: center; justify-content: center; gap: 45px; padding: 10px 20px; }
+.viewer-value-box { min-width: 0; flex: 1; text-align: center; }
+.balance-box { border-left: 1px solid var(--border); padding-left: 45px; }
+.balance-box .big-value { color: #eaf1ed; }
+@media (max-width: 760px) { .viewer-values { gap: 10px; padding: 10px; } .balance-box { padding-left: 10px; } .viewer-values .big-value { font-size: clamp(34px, 10vw, 70px); } }
+
 .label {
     color: var(--muted);
     font-size: 13px;
@@ -428,6 +434,18 @@ tr.active td {
                     oninput="updateMoney()"
                 >
             </div>
+            <div class="r-box" style="margin-top:12px;">
+                <strong>
+                    Initial Capital =
+                </strong>
+                <input
+                    id="initialCapital"
+                    type="number"
+                    step="any"
+                    value="5000"
+                    oninput="updateMoney()"
+                >
+            </div>
             <div class="info">
                 Enter the monetary value of 1R.
                 <br><br>
@@ -534,21 +552,17 @@ tr.active td {
             3. Cumulative Value Viewer
         </h2>
         <div class="viewer-display">
-            <div class="label">
-                Cumulative Money Value
+            <div class="viewer-values">
+                <div class="viewer-value-box">
+                    <div class="label">Cumulative Value Viewer</div>
+                    <div class="big-value" id="bigValue">0</div>
+                </div>
+                <div class="viewer-value-box balance-box">
+                    <div class="label">Balance</div>
+                    <div class="big-value" id="balanceValue">5000</div>
+                </div>
             </div>
-            <div
-                class="big-value"
-                id="bigValue"
-            >
-                0
-            </div>
-            <div
-                class="step"
-                id="stepText"
-            >
-                No data loaded
-            </div>
+            <div class="step" id="stepText">No data loaded</div>
         </div>
         <div class="nav">
             <button
@@ -661,6 +675,10 @@ const dataInput =
     document.getElementById("dataInput");
 const rValue =
     document.getElementById("rValue");
+const initialCapital =
+    document.getElementById("initialCapital");
+const balanceValue =
+    document.getElementById("balanceValue");
 const errorBox =
     document.getElementById("error");
 const bigValue =
@@ -802,11 +820,13 @@ function calculateData() {
    GET R VALUE
 ===================================================== */
 function getRValue() {
-    const value =
-        Number(rValue.value);
-    return Number.isFinite(value)
-        ? value
-        : 0;
+    const value = Number(rValue.value);
+    return Number.isFinite(value) ? value : 0;
+}
+
+function getInitialCapital() {
+    const value = Number(initialCapital.value);
+    return Number.isFinite(value) ? value : 0;
 }
 /* =====================================================
    UPDATE WHEN R VALUE CHANGES
@@ -956,8 +976,8 @@ function render() {
        No data
     */
     if (cumulative.length === 0) {
-        bigValue.textContent =
-            "0";
+        bigValue.textContent = "0";
+        balanceValue.textContent = formatNumber(getInitialCapital());
         stepText.textContent =
             "No data loaded";
         tradeDetail.textContent =
@@ -997,6 +1017,7 @@ function render() {
         cleanNumber(
             moneyValue * 0.80
         );
+    const balance = cleanNumber(getInitialCapital() + moneyValue);
     /*
        Big display
     */
@@ -1004,6 +1025,7 @@ function render() {
         formatNumber(
             moneyValue
         );
+    balanceValue.textContent = formatNumber(balance);
     /*
        Trade counter
     */
@@ -1173,8 +1195,8 @@ function scrollActiveRow() {
 function loadExample() {
     dataInput.value =
         exampleData;
-    rValue.value =
-        10;
+    rValue.value = 10;
+    initialCapital.value = 5000;
     calculateData();
 }
 /* =====================================================
