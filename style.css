@@ -446,30 +446,74 @@ h5 {
 }
 
 /* ================================
-   📱 MOBILE FIX
+   📱 MOBILE OPTIMIZATION
    ================================ */
 
 @media screen and (max-width: 768px) {
 
-    /* CoolTree mobile size */
-    body img.cool-tree {
-        width: 70px !important;
-        max-width: 70px !important;
+    /* 🌳 CoolTree */
+    .cool-tree {
+        position: fixed !important;
+
+        width: 80px !important;
         height: auto !important;
 
-        position: fixed !important;
+        max-width: none !important;
+        max-height: none !important;
+
         right: 8px !important;
         bottom: 8px !important;
-
         left: auto !important;
         top: auto !important;
 
         z-index: 5 !important;
+        pointer-events: none !important;
     }
 
-    /* Mobile font */
-    body,
-    body * {
+
+    /* 🔤 Clean mobile font */
+    * {
         font-family: Arial, sans-serif !important;
+    }
+
+
+    /* 📱 Better mobile spacing */
+    section {
+        padding: 50px 15px !important;
+    }
+
+
+    /* 📱 Hero title */
+    .hero {
+        padding: 20px !important;
+    }
+
+
+    /* 📱 Course cards */
+    .card {
+        margin: 10px 0;
+    }
+
+
+    /* 📱 Headings */
+    h2 {
+        font-size: 2rem !important;
+    }
+
+
+    /* 📱 Main title */
+    .main-course {
+        font-size: 2.5rem !important;
+    }
+
+
+    /* 📱 Logo */
+    .logo-link {
+        top: 10px !important;
+        left: 10px !important;
+    }
+
+    .logo-img {
+        width: 55px !important;
     }
 }
