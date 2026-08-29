@@ -445,38 +445,31 @@ h5 {
   pointer-events: none; /* so it doesn't block clicks */
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-    .cool-tree {
-        width: 10px !important;
-        height: auto;
-        right: 10px !important;
-        bottom: 10px !important;
-        opacity: 0.9;
-        z-index: 10;
+/* ================================
+   📱 MOBILE FIX
+   ================================ */
+
+@media screen and (max-width: 768px) {
+
+    /* CoolTree mobile size */
+    body img.cool-tree {
+        width: 70px !important;
+        max-width: 70px !important;
+        height: auto !important;
+
+        position: fixed !important;
+        right: 8px !important;
+        bottom: 8px !important;
+
+        left: auto !important;
+        top: auto !important;
+
+        z-index: 5 !important;
     }
-}
 
-/* 💻 DESKTOP */
-body {
-    font-family: "MV Boli", cursive;
-}
-
-
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-
-    body {
+    /* Mobile font */
+    body,
+    body * {
         font-family: Arial, sans-serif !important;
     }
-
-    .cool-tree {
-        width: 90px !important;
-        height: auto;
-        right: 10px !important;
-        bottom: 10px !important;
-        opacity: 0.9;
-        z-index: 10;
-    }
-
 }
