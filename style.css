@@ -1034,3 +1034,27 @@ i.bi:active {
   }
 
 }
+
+/* Mobile test */
+
+/* =========================
+   🧪 MOBILE CSS TEST
+   ========================= */
+
+@media screen and (max-width: 768px) {
+
+    body {
+        background: red !important;
+    }
+
+    h1 {
+        color: yellow !important;
+        font-family: Arial, sans-serif !important;
+    }
+
+    h2 {
+        color: white !important;
+        font-family: Arial, sans-serif !important;
+    }
+
+}
