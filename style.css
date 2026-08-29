@@ -1037,23 +1037,22 @@ i.bi:active {
 
 /* Mobile test */
 
-/* =========================
-   🧪 MOBILE CSS TEST
-   ========================= */
-
+/* 📱 MOBILE VERSION */
 @media screen and (max-width: 768px) {
 
-    body {
-        background: red !important;
+    /* 🌳 Minimize CoolTree.png */
+    .cool-tree {
+        width: 80px !important;
+        height: auto !important;
+
+        right: 8px !important;
+        bottom: 8px !important;
+
+        position: fixed !important;
     }
 
-    h1 {
-        color: yellow !important;
-        font-family: Arial, sans-serif !important;
-    }
-
-    h2 {
-        color: white !important;
+    /* 🔤 Change font on mobile */
+    * {
         font-family: Arial, sans-serif !important;
     }
 
