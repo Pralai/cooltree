@@ -448,7 +448,7 @@ h5 {
 /* 📱 MOBILE */
 @media (max-width: 768px) {
     .cool-tree {
-        width: 90px !important;
+        width: 10px !important;
         height: auto;
         right: 10px !important;
         bottom: 10px !important;
