@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>20 Consecutive Trade Challenge</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 30px;
+
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(9, 172, 3, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(255, 220, 0, 0.08),
+            transparent 35%
+        ),
+        #050806;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 38px;
+
+    letter-spacing: 1px;
+
+    color:#09ac03;
+}
+
+.header p {
+    margin-top: 10px;
+
+    color: #9fa9a3;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   GLASS
+========================= */
+
+.glass {
+
+    background:
+        rgba(15, 25, 20, 0.72);
+
+    border:
+        1px solid rgba(9, 172, 3, 0.14);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45),
+        inset 0 0 30px rgba(255,255,255,0.015);
+}
+
+
+/* =========================
+   ATTEMPT SECTION
+========================= */
+
+.attempt-card {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 60px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+}
+
+.attempt-box {
+
+    text-align: center;
+}
+
+.attempt-label {
+
+    color: #8d9992;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+}
+
+
+/* Previous Attempt Input */
+
+.attempt-input {
+
+    width: 110px;
+
+    padding: 10px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.15);
+
+    background:
+        rgba(0,0,0,0.35);
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    outline: none;
+}
+
+.attempt-input:focus {
+
+    border-color: #09ac03;
+
+    box-shadow:
+    
+        0 0 10px rgba(9, 172, 3, 0.15);
+}
+
+
+/* Current Attempt */
+
+.current-attempt {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #09ac03;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-card {
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+}
+
+.progress-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    color: #aab3ae;
+
+    font-size: 14px;
+}
+
+.progress-number {
+
+    color: #09ac03;
+
+    font-weight: bold;
+}
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 9px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #09ac03;
+
+    border-radius: 20px;
+
+    transition: width 0.3s ease;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-card {
+
+    padding: 15px;
+
+    overflow: hidden;
+}
+
+
+/* Scrollable table */
+
+.table-scroll {
+
+    max-height: 540px;
+
+    overflow-y: auto;
+
+    overflow-x: auto;
+
+    border-radius: 12px;
+}
+
+
+/* Scrollbar */
+
+.table-scroll::-webkit-scrollbar {
+
+    width: 8px;
+
+    height: 8px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+
+    background:
+        rgba(255,255,255,0.03);
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(9, 172, 3, 0.35);
+
+    border-radius: 10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(9, 172, 3, 0.55);
+}
+
+
+table {
+
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+}
+
+
+/* Sticky header */
+
+thead {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 5;
+}
+
+th {
+
+    padding: 15px 10px;
+
+    color: #09ac03;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #101914;
+}
+
+td {
+
+    padding: 10px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.05);
+}
+
+
+/* Active row */
+
+tr.active-row {
+
+    background:
+        rgba(9, 172, 3, 0.07);
+}
+
+.trade-number {
+
+    font-weight: bold;
+
+    color: white;
+}
+
+
+/* =========================
+   SELECTS
+========================= */
+
+select {
+
+    width: 100%;
+
+    min-width: 125px;
+
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    background:
+        rgba(0,0,0,0.35);
+
+    color: white;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+select:focus {
+
+    border-color: #09ac03;
+
+    box-shadow:
+        0 0 10px rgba(9, 172, 3, 0.15);
+}
+
+select option {
+
+    background: #111815;
+
+    color: white;
+}
+
+/* =========================
+   OPTION COLORS
+========================= */
+
+select option {
+    background: #111815;
+    color: white;
+}
+
+/* Valid Entry */
+.valid-entry option[value="Yes"] {
+    color: #09ac03;
+}
+
+.valid-entry option[value="No"] {
+    color: red;
+}
+
+
+/* Lot Size */
+.lot-size option[value="Satisfied"] {
+    color: orange;
+}
+
+.lot-size option[value="Good"] {
+    color: #09ac03;
+}
+
+.lot-size option[value="Bad"] {
+    color: red;
+}
+
+
+/* Entry / Exit */
+.entry-exit option[value="Satisfied"] {
+    color: orange;
+}
+
+.entry-exit option[value="Good"] {
+    color: #09ac03;
+}
+
+.entry-exit option[value="Bad"] {
+    color: red;
+}
+
+
+/* Valid Trade */
+.valid-trade option[value="Passed"] {
+    color: #09ac03;
+}
+
+.valid-trade option[value="Failed"] {
+    color: red;
+}
+
+
+/* Passed / Failed */
+
+select.passed {
+
+    border-color: #09ac03;
+
+    color: #09ac03;
+}
+
+select.failed {
+
+    border-color: #ff5c5c;
+
+    color: #ff7777;
+}
+
+/* =========================
+   SELECTED DROPDOWN COLORS
+========================= */
+
+select.option-green {
+    color: #09ac03 !important;
+    -webkit-text-fill-color: #09ac03;
+}
+
+select.option-red {
+    color: red !important;
+    -webkit-text-fill-color: red;
+}
+
+select.option-orange {
+    color: orange !important;
+    -webkit-text-fill-color: orange;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+button {
+
+    border: none;
+
+    padding: 13px 40px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.next-btn {
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+}
+
+.confirm-btn {
+
+    background: #09ac03;
+
+    color: #061009;
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.3);
+}
+
+button:active {
+
+    transform: translateY(0);
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    min-height: 25px;
+
+    font-weight: bold;
+}
+
+.success {
+
+    color: #09ac03;
+}
+
+.error {
+
+    color: #ff6666;
+}
+
+.warning {
+
+    color: #ffd966;
+}
+
+
+/* =========================================================
+   CELEBRATION OVERLAY
+========================================================= */
+
+.celebration {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+    background:
+        rgba(0,0,0,0.78);
+
+    backdrop-filter: blur(10px);
+}
+
+.celebration.show {
+
+    display: flex;
+}
+
+
+.celebration-box {
+
+    position: relative;
+
+    width: min(600px, 90%);
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        rgba(15,25,20,0.92);
+
+    border:
+        1px solid rgba(9, 172, 3, 0.35);
+
+    box-shadow:
+        0 0 80px rgba(9, 172, 3, 0.15);
+}
+
+.celebration-box h2 {
+
+    margin: 0;
+
+    font-size: 42px;
+
+    color: #09ac03;
+}
+
+.celebration-box p {
+
+    margin-top: 15px;
+
+    color: #c8d2cc;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+
+    position: fixed;
+
+    width: 10px;
+
+    height: 18px;
+
+    top: -30px;
+
+    z-index: 1100;
+
+    animation:
+        confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   CELEBRATION BUTTON
+========================= */
+
+.close-celebration {
+
+    margin-top: 25px;
+
+    background: #09ac03;
+
+    color: #061009;
+
+    padding: 12px 30px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 15px;
+    }
+
+    .header h1 {
+
+        font-size: 27px;
+    }
+
+    .attempt-card {
+
+        gap: 25px;
+    }
+
+    .attempt-input {
+
+        width: 80px;
+
+        font-size: 21px;
+    }
+
+    .current-attempt {
+
+        font-size: 23px;
+    }
+
+    .table-card {
+
+        padding: 8px;
+    }
+
+    .table-scroll {
+
+        max-height: 500px;
+    }
+
+    .buttons {
+
+        position: sticky;
+
+        bottom: 10px;
+
+        background:
+            rgba(5,8,6,0.85);
+
+        padding: 10px;
+
+        border-radius: 15px;
+
+        backdrop-filter: blur(15px);
+
+        z-index: 20;
+    }
+
+    button {
+
+        flex: 1;
+    }
+
+    .celebration-box h2 {
+
+        font-size: 32px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            20 Consecutive Trade Challenge
+        </h1>
+
+        <p style="font-weight: bold;">
+            Training : Discipline  Patience  Consistency
+        </p>
+
+    </div>
+
+
+    <!-- ATTEMPT COUNT -->
+
+    <div class="glass attempt-card">
+
+
+        <div class="attempt-box">
+
+            <div class="attempt-label">
+                Previous Attempt Count
+            </div>
+
+            <input
+                type="number"
+                id="previousAttempt"
+                class="attempt-input"
+                min="0"
+                value="0"
+            >
+
+        </div>
+
+
+        <div class="attempt-box">
+
+            <div class="attempt-label">
+                Current Attempt
+            </div>
+
+            <div
+                class="current-attempt"
+                id="currentAttempt"
+            >
+                1
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="glass progress-card">
+
+        <div class="progress-top">
+
+            <span>
+                Challenge Progress
+            </span>
+
+            <span
+                class="progress-number"
+                id="progressText"
+            >
+                0 / 20
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="glass table-card">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Trade No.
+                        </th>
+
+                        <th>
+                            Valid Entry
+                        </th>
+
+                        <th>
+                            Lot Size
+                        </th>
+
+                        <th>
+                            Entry / Exit
+                        </th>
+
+                        <th>
+                            VALID TRADE
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tradeTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+        >
+            Next
+        </button>
+
+
+        <button
+            class="confirm-btn"
+            id="confirmBtn"
+        >
+            Confirm
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CELEBRATION
+====================================================== -->
+
+<div
+    class="celebration"
+    id="celebration"
+>
+
+    <div class="celebration-box">
+
+        <h2>
+            🎉 CONGRATULATIONS! 🎉
+        </h2>
+
+        <p>
+            You completed 20 consecutive
+            rule-following trades.
+        </p>
+
+        <p>
+            <strong>
+                Discipline & Patience Challenge Passed
+            </strong>
+        </p>
+
+        <button
+            class="close-celebration"
+            id="closeCelebration"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentTrade = 1;
+
+
+/*
+    Previous Attempt Count is entered
+    manually by the user.
+
+    Current Attempt is always:
+
+    Previous Attempt + 1
+*/
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const previousAttemptInput =
+    document.getElementById(
+        "previousAttempt"
+    );
+
+const currentAttemptElement =
+    document.getElementById(
+        "currentAttempt"
+    );
+
+const tradeTable =
+    document.getElementById(
+        "tradeTable"
+    );
+
+const progressText =
+    document.getElementById(
+        "progressText"
+    );
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+const celebration =
+    document.getElementById(
+        "celebration"
+    );
+
+
+/* =========================================================
+   ATTEMPT DISPLAY
+========================================================= */
+
+function updateAttemptDisplay() {
+
+    const previousAttempt =
+        parseInt(
+            previousAttemptInput.value
+        ) || 0;
+
+
+    currentAttemptElement.textContent =
+        previousAttempt + 1;
+
+}
+
+
+/* =========================================================
+   PREVIOUS ATTEMPT INPUT
+========================================================= */
+
+previousAttemptInput.addEventListener(
+    "input",
+    function() {
+
+        updateAttemptDisplay();
+
+    }
+);
+
+
+/* =========================================================
+   CREATE TABLE
+========================================================= */
+
+function createTable() {
+
+    tradeTable.innerHTML = "";
+
+
+    for (
+        let i = 1;
+        i <= 20;
+        i++
+    ) {
+
+        const row =
+            document.createElement("tr");
+
+
+        row.dataset.trade = i;
+
+
+        row.innerHTML = `
+
+            <td class="trade-number">
+                ${i}
+            </td>
+
+
+            <td>
+
+                <select class="valid-entry">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Yes">
+                        Yes
+                    </option>
+
+                    <option value="No">
+                        No
+                    </option>
+
+                </select>
+
+            </td>
+
+
+            <td>
+
+                <select class="lot-size">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Satisfied">
+                        Satisfied
+                    </option>
+
+                    <option value="Good">
+                        Good
+                    </option>
+
+                    <option value="Bad">
+                        Bad
+                    </option>
+
+                </select>
+
+            </td>
+
+
+            <td>
+
+                <select class="entry-exit">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Good">
+                        Good
+                    </option>
+
+                    <option value="Satisfied">
+                        Satisfied
+                    </option>
+
+                    <option value="Bad">
+                        Bad
+                    </option>
+
+                </select>
+
+            </td>
+
+
+            <td>
+
+                <select class="valid-trade">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Passed">
+                        Passed
+                    </option>
+
+                    <option value="Failed">
+                        Failed
+                    </option>
+
+                </select>
+
+            </td>
+
+        `;
+
+
+        tradeTable.appendChild(row);
+
+    }
+
+
+    highlightCurrentRow();
+
+    updateProgress();
+
+}
+
+
+/* =========================================================
+   HIGHLIGHT CURRENT ROW
+========================================================= */
+
+function highlightCurrentRow() {
+
+    document
+        .querySelectorAll("tbody tr")
+        .forEach(row => {
+
+            row.classList.remove(
+                "active-row"
+            );
+
+
+            if (
+                parseInt(
+                    row.dataset.trade
+                )
+                === currentTrade
+            ) {
+
+                row.classList.add(
+                    "active-row"
+                );
+
+            }
+
+        });
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+
+            if (currentTrade < 20) {
+
+                currentTrade++;
+
+                highlightCurrentRow();
+
+                clearMessage();
+
+
+                /*
+                    Scroll the current row
+                    into view.
+                */
+
+                const row =
+                    document.querySelector(
+                        `tr[data-trade="${currentTrade}"]`
+                    );
+
+
+                if (row) {
+
+                    row.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+            } else {
+
+                showMessage(
+                    "You are already on Trade 20.",
+                    "warning"
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CONFIRM BUTTON
+========================================================= */
+
+document
+    .getElementById("confirmBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+
+            const validTradeSelections =
+                document.querySelectorAll(
+                    ".valid-trade"
+                );
+
+
+            /*
+                SUCCESS IS VALID ONLY WHEN:
+                - Exactly 20 VALID TRADE fields exist
+                - Every single one is explicitly "Passed"
+
+                Blank selections are NOT treated as success.
+                A single "Failed" is NOT treated as success.
+            */
+
+            const allPassed =
+                validTradeSelections.length === 20 &&
+                Array.from(validTradeSelections).every(
+                    select => select.value === "Passed"
+                );
+
+
+            /* =================================================
+               SUCCESS
+            ================================================= */
+
+            if (allPassed) {
+
+                showCelebration();
+
+                return;
+            }
+
+
+            /* =================================================
+               FAILED / INCOMPLETE
+            ================================================= */
+
+            let failedTrade = null;
+            let incompleteTrade = null;
+
+            validTradeSelections.forEach(
+                (select, index) => {
+
+                    if (
+                        select.value === "Failed" &&
+                        failedTrade === null
+                    ) {
+                        failedTrade = index + 1;
+                    }
+
+                    if (
+                        select.value === "" &&
+                        incompleteTrade === null
+                    ) {
+                        incompleteTrade = index + 1;
+                    }
+
+                }
+            );
+
+
+            /*
+                If any trade is explicitly Failed,
+                the attempt fails and resets.
+            */
+
+            if (failedTrade !== null) {
+
+                let previousAttempt =
+                    parseInt(
+                        previousAttemptInput.value
+                    ) || 0;
+
+                previousAttempt++;
+
+                previousAttemptInput.value =
+                    previousAttempt;
+
+                currentTrade = 1;
+
+                createTable();
+
+                updateAttemptDisplay();
+
+                showMessage(
+                    `❌ Challenge failed at Trade ${failedTrade}. Attempt ${previousAttempt + 1} starts now.`,
+                    "error"
+                );
+
+                return;
+            }
+
+
+            /*
+                If there is no failure but some VALID TRADE
+                fields are still blank, do NOT celebrate and
+                do NOT reset the attempt.
+            */
+
+            if (incompleteTrade !== null) {
+
+                showMessage(
+                    `⚠️ Trade ${incompleteTrade} is not marked as Passed. All 20 trades must be Passed.`,
+                    "warning"
+                );
+
+                const row =
+                    document.querySelector(
+                        `tr[data-trade="${incompleteTrade}"]`
+                    );
+
+                if (row) {
+                    row.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }
+
+                return;
+            }
+
+
+            /*
+                Safety fallback.
+            */
+
+            showMessage(
+                "⚠️ All 20 trades must be marked as Passed before completing the challenge.",
+                "warning"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    let passedTrades = 0;
+
+
+    document
+        .querySelectorAll(".valid-trade")
+        .forEach(select => {
+
+            if (
+                select.value === "Passed"
+            ) {
+
+                passedTrades++;
+
+            }
+
+        });
+
+
+    progressText.textContent =
+        `${passedTrades} / 20`;
+
+
+    progressFill.style.width =
+        `${(passedTrades / 20) * 100}%`;
+
+}
+
+/* =========================================================
+   SELECTED OPTION COLOR
+========================================================= */
+
+function updateSelectColor(select) {
+
+    select.classList.remove(
+        "option-green",
+        "option-red",
+        "option-orange"
+    );
+
+    if (
+        select.value === "Yes" ||
+        select.value === "Good" ||
+        select.value === "Passed"
+    ) {
+
+        select.classList.add("option-green");
+
+    }
+
+    else if (
+        select.value === "No" ||
+        select.value === "Bad" ||
+        select.value === "Failed"
+    ) {
+
+        select.classList.add("option-red");
+
+    }
+
+    else if (
+        select.value === "Satisfied"
+    ) {
+
+        select.classList.add("option-orange");
+
+    }
+}
+
+/* =========================================================
+   SELECT CHANGE
+========================================================= */
+
+document.addEventListener(
+    "change",
+    function(event) {
+
+
+        if (
+            !event.target.matches("select")
+        ) {
+
+            return;
+
+        }
+
+
+        updateProgress();
+
+        updateSelectColor(event.target);
+
+
+        /*
+            Color VALID TRADE
+        */
+
+        if (
+            event.target.classList.contains(
+                "valid-trade"
+            )
+        ) {
+
+
+            event.target.classList.remove(
+                "passed",
+                "failed"
+            );
+
+
+            if (
+                event.target.value === "Passed"
+            ) {
+
+                event.target.classList.add(
+                    "passed"
+                );
+
+            }
+
+
+            if (
+                event.target.value === "Failed"
+            ) {
+
+                event.target.classList.add(
+                    "failed"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CELEBRATION
+========================================================= */
+
+function showCelebration() {
+
+    celebration.classList.add(
+        "show"
+    );
+
+
+    createConfetti();
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti() {
+
+
+    /*
+        Create 150 pieces of confetti.
+    */
+
+    for (
+        let i = 0;
+        i < 150;
+        i++
+    ) {
+
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.className =
+            "confetti";
+
+
+        /*
+            Random horizontal position
+        */
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        /*
+            Random size
+        */
+
+        const width =
+            5 + Math.random() * 8;
+
+        const height =
+            8 + Math.random() * 15;
+
+
+        piece.style.width =
+            width + "px";
+
+        piece.style.height =
+            height + "px";
+
+
+        /*
+            Random animation duration
+        */
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+
+        /*
+            Random delay
+        */
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+
+        /*
+            Random rotation
+        */
+
+        piece.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+
+        /*
+            Random confetti color
+        */
+
+        const colors = [
+
+            "#09ac03",
+            "#ffffff",
+            "#ffe066",
+            "#66d9ff",
+            "#ff77aa",
+            "#b58cff"
+
+        ];
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        /*
+            Remove after animation.
+        */
+
+        setTimeout(
+            () => {
+
+                piece.remove();
+
+            },
+
+            6000
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE CELEBRATION
+========================================================= */
+
+document
+    .getElementById("closeCelebration")
+    .addEventListener(
+        "click",
+        function() {
+
+            celebration.classList.remove(
+                "show"
+            );
+
+            document
+                .querySelectorAll(
+                    ".confetti"
+                )
+                .forEach(
+                    piece => piece.remove()
+                );
+
+            /*
+                Start a fresh 20-trade table after
+                pressing Continue.
+            */
+            currentTrade = 1;
+            createTable();
+            updateAttemptDisplay();
+            clearMessage();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        `message ${type}`;
+
+}
+
+
+function clearMessage() {
+
+    message.textContent =
+        "";
+
+    message.className =
+        "message";
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateAttemptDisplay();
+
+createTable();
+
+</script>
+
+</body>
+</html>
+
