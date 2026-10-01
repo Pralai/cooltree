@@ -106,7 +106,7 @@ body {
   position: absolute;
   width: 2px;
   height: 20px;
-  background: rgba(34, 197, 34, 0.3);
+  background: rgba(180, 190, 195, 0.20);
   animation: rainFall linear infinite;
 }
 
