@@ -984,22 +984,21 @@ function updateStats() {
         formatNumber(
             netPnL
         ) + " R";
-statWinRate.textContent =
-    formatNumber(
-        winRate
-    ) + "%";
-
-statProfitFactor.textContent =
-    profitFactor === Infinity
-        ? "∞"
-        : formatNumber(
-            profitFactor
-        );
-
-statAvgRR.textContent =
-    formatNumber(
-        avgRR
-    ) + " R";
+    statWinRate.textContent =
+        formatNumber(
+            winRate
+        ) + "%";
+    statProfitFactor.textContent =
+        profitFactor === Infinity
+            ? "∞"
+            : formatNumber(
+                profitFactor
+            );
+    statAvgRR.textContent =
+        formatNumber(
+            avgRR
+        ) + " R";
+}
 /* =====================================================
    RENDER BIG VIEWER
 ===================================================== */
