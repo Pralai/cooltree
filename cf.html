@@ -985,20 +985,15 @@ function updateStats() {
             netPnL
         ) + " R";
     statWinRate.textContent =
-        formatNumber(
-            winRate
-        ) + "%";
+        winRate.toFixed(2) + "%";
     statProfitFactor.textContent =
         profitFactor === Infinity
             ? "∞"
-            : formatNumber(
-                profitFactor
-            );
+            : profitFactor.toFixed(2);
+
+
     statAvgRR.textContent =
-        formatNumber(
-            avgRR
-        ) + " R";
-}
+        avgRR.toFixed(2) + " R";
 /* =====================================================
    RENDER BIG VIEWER
 ===================================================== */
