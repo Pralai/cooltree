@@ -986,17 +986,17 @@ function updateStats() {
         ) + " R";
     statWinRate.textContent =
         formatNumber(
-            winRate
+            Math.round(winRate * 100) / 100
         ) + "%";
     statProfitFactor.textContent =
         profitFactor === Infinity
             ? "∞"
             : formatNumber(
-                profitFactor
+                Math.round(profitFactor * 100) / 100
             );
     statAvgRR.textContent =
         formatNumber(
-            avgRR
+            Math.round(avgRR*100)/100
         ) + " R";
 }
 /* =====================================================
@@ -1070,7 +1070,10 @@ function render() {
     tradeResult.textContent =
         formatNumber(
             trades[index]
-        ) + " R";
+        ) + " R == " + 
+        formatNumber(
+            trades[index]*getRValue()
+        );
     cumulativeR.textContent =
         formatNumber(
             cumulative[index]
