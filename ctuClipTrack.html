@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClipTrack</title>
+<style>
+:root{--bg:#050d15;--panel:#08151c;--line:#124b4b;--text:#f3f7fa;--muted:#b4c2ce;--green:#1eb507;--green2:#1eb507}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font-family:"MV Boli","Mv Boli",cursive;background:radial-gradient(ellipse at 50% 55%,#142430 0,#09131d 42%,#040a10 100%);overflow-x:hidden}
+.topbar{height:62px;display:flex;align-items:center;padding:0 clamp(18px,3.2vw,48px);border-bottom:1px solid #1b3039;background:#061018d9}
+.brand{display:flex;align-items:center;gap:13px;font-size:25px;font-weight:800;letter-spacing:-.8px}.brand-mark{color:var(--green);font-size:37px;line-height:1;transform:rotate(-42deg);display:inline-block}.brand .clip{color:var(--green)}
+main{width:min(1120px,100%);padding:32px 22px 35px;margin:0 auto}
+.progress-card{width:min(840px,100%);margin:0 auto 38px;border:1px solid #07534b;border-radius:16px;background:linear-gradient(110deg,#07151bdc,#09151bdc);box-shadow:0 10px 36px #0002;display:grid;grid-template-columns:1.1fr 1fr 1.1fr 1fr;align-items:center;min-height:125px;padding:14px 24px}
+.metric{min-height:72px;display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-right:1px solid #18313b;gap:8px}.metric:first-child{padding-left:10px}.metric:last-child{border:0}.metric-label{font-size:14px;color:#c4d0db}.metric-number{font-size:29px;font-weight:750;letter-spacing:-.6px}.green{color:var(--green)}
+.target-input{width:100%;max-width:190px;background:#0c1b25;border:1px solid #243f4c;color:white;border-radius:9px;padding:10px 12px;font-size:16px;outline:none}.target-input:focus{border-color:var(--green)}
+.ring{width:98px;height:98px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--pct,0%),#273a47 0);position:relative;margin:auto}.ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#0a161f}.ring strong{z-index:1;font-size:22px}
+.jars{display:grid;grid-template-columns:1fr 1fr;gap:clamp(25px,7vw,85px);align-items:end;width:min(900px,100%);margin:0 auto}
+.jar-column{text-align:center;min-width:0}.jar-label{font-size:16px;font-weight:650;margin-bottom:5px}.jar-count{font-size:clamp(27px,3vw,35px);font-weight:750;margin-bottom:12px;letter-spacing:-.5px}.jar-count span{font-size:14px;font-weight:500;color:#c1ced9;letter-spacing:0;margin-left:4px}
+.jar{height:clamp(350px,38vw,480px);width:100%;position:relative;isolation:isolate;overflow:hidden;border:3px solid #b9d4e58a;border-top:8px solid #b8d2dfb0;border-radius:30px 30px 48px 48px;background:linear-gradient(90deg,#d6f2ff32 0%,#d6f2ff0a 9%,#d6f2ff02 26%,#e6f8ff09 69%,#c5e9ff26 100%),linear-gradient(180deg,#1830437d,#0b1824a8 52%,#a4d8f020);box-shadow:inset 12px 0 18px #e4f6ff18,inset -14px 0 20px #d4f1ff19,inset 0 -11px 17px #bde9ff22,0 24px 44px #0008}
+.jar:before{content:"";position:absolute;z-index:4;top:-13px;left:6%;width:88%;height:25px;border:4px solid #d6e7eea8;border-radius:50%;background:linear-gradient(#4b687a,#172c3c 65%,#09151f);box-shadow:0 4px 9px #0008}
+.jar:after{content:"";position:absolute;z-index:3;left:3%;right:3%;bottom:4px;height:19px;border-radius:50%;border:2px solid #c7efff6b;background:#d5f4ff0b;pointer-events:none}
+.pin-bed{position:absolute;inset:15px 7px 12px;display:flex;flex-wrap:wrap-reverse;align-content:flex-start;align-items:flex-end;justify-content:center;gap:clamp(5px,.9vw,10px);padding:7px 2px 4px;overflow:hidden}
+.pin{--w:43px;--h:68px;width:var(--w);height:var(--h);flex:0 0 var(--w);border:5px solid var(--c);border-radius:22px 22px 18px 18px;position:relative;transform:rotate(var(--r));background:linear-gradient(110deg,color-mix(in srgb,var(--c),white 48%),var(--c) 36%,color-mix(in srgb,var(--c),black 30%));box-shadow:inset 4px 0 4px #ffffffad,inset -4px 0 5px #0008,0 3px 5px #0009;filter:saturate(1.2)}
+.pin:after{content:"";position:absolute;left:6px;right:6px;top:7px;bottom:7px;border:3px solid #fff9;border-radius:14px 14px 11px 11px;box-shadow:inset 0 0 3px #0008}
+.glint{position:absolute;z-index:5;top:27px;bottom:22px;left:12px;width:8px;border-radius:8px;background:linear-gradient(transparent,#e4f9ff55,transparent);pointer-events:none}.glint.right{left:auto;right:12px;width:4px;opacity:.7}
+.jar-empty{position:absolute;inset:0;display:grid;place-items:center;color:#93a9b8;font-size:14px;pointer-events:none;text-align:center;padding:20px}
+.caption{text-align:center;margin:26px 0 20px;font-size:clamp(24px,3vw,32px);font-weight:750;letter-spacing:-.8px}.caption .accent{color:var(--green)}
+.controls{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:0 auto 24px}.btn{width:245px;max-width:46%;padding:15px 20px;border-radius:12px;font-weight:700;font-size:15px;transition:transform .15s,filter .15s}.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}.primary{border:0;background:linear-gradient(100deg,#1eb507,#1eb507);color:white;box-shadow:0 8px 25px #00bd8b21}.secondary{border:1px solid #344c5e;background:linear-gradient(110deg,#101e2a,#14232f);color:#c4d0db}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#12382f;border:1px solid #23735a;color:#d6ffed;padding:10px 16px;border-radius:10px;box-shadow:0 8px 24px #0006;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;white-space:nowrap}.toast.show{opacity:1}
+@media(min-width:1000px){main{padding-top:32px}.jar{height:clamp(410px,39vw,500px)}}
+@media(max-width:650px){.topbar{height:58px}.brand{font-size:22px}.brand-mark{font-size:31px}main{padding:22px 14px}.progress-card{grid-template-columns:1fr 1fr;row-gap:16px;padding:16px 10px;margin-bottom:28px}.metric{padding:4px 13px;min-height:65px}.metric:nth-child(2){border-right:0}.metric:nth-child(3){border-right:1px solid #18313b}.metric:first-child{padding-left:13px}.ring{width:75px;height:75px}.ring:before{inset:7px}.ring strong{font-size:18px}.jars{gap:13px}.jar{height:clamp(260px,83vw,360px);border-radius:22px 22px 34px 34px;border-top-width:7px}.jar-count{font-size:25px;margin-bottom:8px}.jar-count span{display:block;font-size:12px;margin:0}.pin-bed{gap:3px;padding:5px 0}.pin{--w:25px;--h:43px;border-width:3px;border-radius:13px 13px 10px 10px}.pin:after{left:3px;right:3px;top:4px;bottom:4px;border-width:2px;border-radius:8px}.glint{left:7px;width:4px}.glint.right{right:7px;width:3px}.caption{margin:22px 0 17px;font-size:23px}.btn{width:48%;max-width:none;padding:14px 8px;font-size:14px}.controls{gap:10px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">⌁</span><span>Clip<span class="clip">Track</span></span></div></header>
+<main>
+<section class="progress-card" aria-label="Today's Progress">
+  <div class="metric"><span class="metric-label">Target Count</span><input class="target-input" id="target" type="number" min="1" max="500" value="50" aria-label="Target count"></div>
+  <div class="metric"><div class="ring" id="ring" style="--pct:0%"><strong id="percent">0%</strong></div></div>
+  <div class="metric"><span class="metric-label">Completed</span><strong class="metric-number green" id="completedCount">0</strong></div>
+  <div class="metric"><span class="metric-label">Remaining</span><strong class="metric-number" id="remainingCount">50</strong></div>
+</section>
+<section class="jars" aria-label="Paper clip jars">
+  <div class="jar-column"><div class="jar-label">Remaining</div><div class="jar-count"><span id="remainingBig">50</span><span>pins</span></div>
+    <div class="jar"><div class="pin-bed" id="remainingPins"></div><div class="jar-empty" id="remainingEmpty"></div><div class="glint"></div><div class="glint right"></div></div>
+  </div>
+  <div class="jar-column"><div class="jar-label">Completed</div><div class="jar-count"><span id="completedBig">0</span><span>pins</span></div>
+    <div class="jar"><div class="pin-bed" id="completedPins"></div><div class="jar-empty" id="completedEmpty">Your completed pins<br>will appear here</div><div class="glint"></div><div class="glint right"></div></div>
+  </div>
+</section>
+<div class="caption">Move a clip. <span class="accent">Build</span> your future.</div>
+<div class="controls"><button class="btn primary" id="move">⌁ &nbsp; Move Clip</button><button class="btn secondary" id="reset">⟳ &nbsp; Reset Pins</button></div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<canvas id="celebration" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100;display:none"></canvas>
+<script>
+(() => {
+const $=id=>document.getElementById(id);
+const colors=['#ff4f69','#ff9d38','#ffd52e','#35dc87','#00d4d9','#258eff','#8b54ff','#dc43f2','#ff64b5','#a9e849','#ff6d3f','#49c8ff'];
+let target=50,completed=0,timer,confettiFrame=null,confettiPieces=[];
+ function celebrate(){
+  const canvas=$('celebration'),ctx=canvas.getContext('2d');
+  if(confettiFrame)cancelAnimationFrame(confettiFrame);
+  const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);canvas.style.display='block';
+  const palette=['#1eb507','#ff3b6b','#ffd93d','#25c9ff','#a855f7','#ff8c32','#ff5bd6','#ffffff'];
+  confettiPieces=Array.from({length:220},()=>({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.7,w:5+Math.random()*8,h:7+Math.random()*12,vx:(Math.random()-.5)*5,vy:2+Math.random()*5,rot:Math.random()*Math.PI,spin:(Math.random()-.5)*.22,color:palette[Math.floor(Math.random()*palette.length)]}));
+  const start=performance.now();function frame(now){ctx.clearRect(0,0,innerWidth,innerHeight);confettiPieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.spin;p.vy+=.025;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});if(now-start<4200){confettiFrame=requestAnimationFrame(frame)}else{canvas.style.display='none';ctx.clearRect(0,0,innerWidth,innerHeight);confettiFrame=null}}confettiFrame=requestAnimationFrame(frame);
+ }
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('toast').classList.remove('show'),1900)}
+function pins(n,offset=0){
+ let html='';
+ for(let i=0;i<n;i++){
+  const k=i+offset,c=colors[(k*7+Math.floor(k/3))%colors.length];
+  const h=62+(k*17%26),w=39+(k*7%13),r=(k*29%31)-15;
+  html+=`<span class="pin" style="--c:${c};--h:${h}px;--w:${w}px;--r:${r}deg" aria-hidden="true"></span>`;
+ }
+ return html;
+}
+function render(){
+ const left=target-completed,pct=Math.round(completed/target*100);
+ $('remainingPins').innerHTML=pins(left,completed);
+ $('completedPins').innerHTML=pins(completed,0);
+ $('remainingEmpty').textContent=left===0?'All pins moved!':'';
+ $('completedEmpty').innerHTML=completed===0?'Your completed pins<br>will appear here':'';
+ $('target').value=target;$('percent').textContent=pct+'%';$('ring').style.setProperty('--pct',pct+'%');
+ $('completedCount').textContent=completed;$('remainingCount').textContent=left;
+ $('remainingBig').textContent=left;$('completedBig').textContent=completed;
+ $('move').disabled=completed>=target;$('move').textContent=completed>=target?'✓  All Pins Moved!':'⌁  Move Clip';
+}
+$('move').addEventListener('click',()=>{if(completed>=target)return;completed++;render();if(completed===target){celebrate()} });
+$('reset').addEventListener('click',()=>{if(completed===0){toast('The pins are already reset.');return}if(!confirm('Reset all pins to the remaining jar?'))return;completed=0;render();toast('Pins reset. Fresh start.')});
+$('target').addEventListener('change',()=>{const v=Number($('target').value);if(!Number.isInteger(v)||v<1||v>500){toast('Enter a whole number from 1 to 500.');$('target').value=target;return}target=v;completed=Math.min(completed,target);render();toast('Target updated.')});
+render();
+})();
+</script>
+</body>
+</html>
